@@ -1,71 +1,3 @@
-<!-- Play Animation Node -->
-
-<script type="text/javascript">
-    RED.nodes.registerType('play-animation',{
-        category: 'function',
-        color: '#F16661',
-        defaults: {
-            name: {
-                value: "play-animation",
-                required: true,
-             },
-            robotIp: {
-                value: "0.0.0.0",
-                required: true,
-                validate: RED.validators.regex(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/)
-            },
-            animationName: {
-                value: "",
-                required: true,
-            }
-        },
-        inputs:1,
-        outputs:1,
-        icon: "icons/butter-logo-blue.png",
-        paletteLabel: "play-animation",
-        label: function() {
-            return this.name||"play-animation";
-        },
-        align: 'right',
-        outputLabels: ["operation result"]
-    });
-</script>
-
-<script type="text/html" data-template-name="play-animation">
-    <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-    <div class="form-row">
-        <label for="node-input-robotIp"><i class="fa fa-tag"></i> Robot IP</label>
-        <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
-    </div>
-    <div class="form-row">
-        <label for="node-input-animationName"><i class="fa fa-tag"></i> Animation Name</label>
-        <input type="text" id="node-input-animationName" placeholder="">
-    </div>
-    <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
-</script>
-
-<script type="text/html" data-help-name="play-animation">
-    <p>Plays an animation on a robot.</p>
-    <h3>Outputs</h3>
-     <ol class="node-ports">
-         <li>Operation Result
-             <dl class="message-properties">
-                 <dt>payload <span class="property-type">string</span></dt>
-                 <dd>the result of the butter command - either `failed` or `success`.</dd>
-             </dl>
-         </li>
-    </ol>
-
-    <h3>Details</h3>
-    <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.
-    <code>node.animationName</code> is used to indicate which animation to run.</p>
-    <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
-</script>
-
-
 <!-- Set Motor Register Node -->
 
 <script type="text/javascript">
@@ -97,7 +29,7 @@
         },
         inputs:1,
         outputs:1,
-        icon: "icons/butter-logo-blue.png",
+        icon: "icons/butter-logo.png",
         paletteLabel: "set-motor-register",
         label: function() {
             return this.name||"set-motor-register";

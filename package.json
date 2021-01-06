@@ -5,7 +5,8 @@
   "main": "butter-node-red.js",
   "node-red": {
     "nodes": {
-      "butter-play-animation": "butter-node-red.js"
+      "butter-play-animation": "play-animation.js",
+      "butter-set-motor-register": "set-motor-register.js"
     }
   },
   "scripts": {
