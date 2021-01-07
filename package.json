@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/idc-milab/NodeRed-Butter#readme",
   "dependencies": {
-    "@butter-robotics/mas-javascript-api": "^0.12.5"
+    "@butter-robotics/mas-javascript-api": "^0.12.7"
   }
 }
