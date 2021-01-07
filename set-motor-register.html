@@ -11,20 +11,18 @@
              },
             robotIp: {
                 value: "0.0.0.0",
-                required: true,
-                validate: RED.validators.regex(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/)
             },
             motorName: {
                 value: "",
-                required: true
             },
             registerName: {
                 value: "",
-                required: true
             },
             value: {
-                value: "",
-                validate: RED.validators.number()
+                value: 0,
+            },
+            debugMode: {
+                value: false
             }
         },
         inputs:1,
@@ -35,7 +33,8 @@
             return this.name||"set-motor-register";
         },
         align: 'right',
-        outputLabels: ["operation result"]
+        outputLabels: ["operation result"],
+        inputLabels: ["op instructions (optional)"]
     });
 </script>
 
@@ -64,25 +63,50 @@
         <label for="node-input-value"><i class="fa fa-tag"></i> Value</label>
         <input type="number" id="node-input-value">
     </div>
+    <div class="form-row">
+        <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
+        <input type="checkbox" id="node-input-debugMode" placeholder="">
+    </div>
+    <div class="form-tips"><b>Note !</b> If the node receives as input a json with the above properties, the node will disregard the ones provided in the UI.
+        See the help section to understand how this json should be composed.</div>
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
 <script type="text/html" data-help-name="set-motor-register">
     <p>Sets a register to a value in a specific motor.</p>
+    <h3>Inputs</h3>
+    <ol class="node-ports">
+        <li>parameters (Optional)
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">json object</span></dt>
+                <dd>The payload has to be of the following format: <br>
+                    <code>
+                    { <br>
+                        "robotIp": some-robot-ip, <br>
+                        "motorName": some-motor-name, <br>
+                        "registerName": some-register-name, <br>
+                        "value": some-register-value, <br>
+                    }
+                    </code>
+                </dd>
+            </dl>
+        </li>
+   </ol>
     <h3>Outputs</h3>
      <ol class="node-ports">
          <li>Operation Result
              <dl class="message-properties">
                  <dt>payload <span class="property-type">string</span></dt>
-                 <dd>the result of the butter command - either `failed` or `success`.</dd>
+                 <dd>the result of the butter command.</dd>
              </dl>
          </li>
     </ol>
 
     <h3>Details</h3>
     <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.
-    <code>node.motorName</code> is used to indicate which motor to manipulate.</p>
-    <code>node.registerName</code> is used to indicate which motor register to write to.</p>
-    <code>node.value</code> is used to indicate which integer value to write to the register.</p>
+    <p><code>node.motorName</code> is used to indicate which motor to manipulate.</p>
+    <p><code>node.registerName</code> is used to indicate which motor register to write to.</p>
+    <p><code>node.value</code> is used to indicate which integer value to write to the register.</p>
+    <p><code>node.debugMode</code> if true, the node will print logs to the debug console.</p>
     <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
 </script>

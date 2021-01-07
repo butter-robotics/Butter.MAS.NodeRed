@@ -13,17 +13,24 @@ module.exports = function(RED) {
 
 		node.on('input', async function(msg) {
 			// create butter client.
-			this.warn('creating butter http client.');
 			const butterHttpClient = new butter.HttpClient(node.config.robotIp);
 
+			let robotIp = node.config.robotIp;
+			let animationName = node.config.animationName;
+			let isDebugMode = node.config.debugMode;
+
+			// check if message has correct json payload - if yes run it instead.
+			if (msg.payload.robotIp != undefined && msg.payload.animationName != undefined) {
+				robotIp = msg.payload.robotIp;
+				animationName = msg.payload.animationName;
+			}
+
 			// play animation.
-			// TODO: fix node.animationName is undefined.
-			this.warn(`playing animation - ${node.config.animationName}`);
-			const resp = await butterHttpClient.playAnimation(node.config.animationName);
-			this.warn(resp);
-			// send operation result.
-			var respMsg = { payload: 'success' };
-			node.send(respMsg);
+			if (isDebugMode) this.warn(`attempting to play animation - ${animationName}`);
+			butter_response = await butterHttpClient.playAnimation(animationName);
+
+			if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
+			node.send({ payload: butter_response.data });
 		});
 	}
 

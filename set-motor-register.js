@@ -12,22 +12,38 @@ module.exports = function(RED) {
 
 		const butter = require('@butter-robotics/mas-javascript-api');
 
-		node.on('input', function(msg) {
+		node.on('input', async function(msg) {
 			// create butter client.
-			this.debug('creating butter http client.');
 			const butterHttpClient = new butter.HttpClient(node.config.robotIp);
 
+			let robotIp = node.config.robotIp;
+			let motorName = node.config.motorName;
+			let registerName = node.config.registerName;
+			let value = node.config.value;
+			let isDebugMode = node.config.debugMode;
+
+			// check if message has correct json payload - if yes run it instead.
+			if (
+				msg.payload.robotIp != undefined &&
+				msg.payload.motorName != undefined &&
+				msg.payload.registerName != undefined &&
+				msg.payload.value != undefined
+			) {
+				robotIp = msg.payload.robotIp;
+				motorName = msg.payload.motorName;
+				registerName = msg.payload.registerName;
+				value = msg.payload.value;
+			}
+
 			// play animation.
-			this.debug(
-				`setting the register ${node.config.registerName} of motor ${node.config.motorName} of robot ${node
-					.config.robotIp} to ${node.value}`
-			);
+			if (isDebugMode)
+				this.warn(`setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`);
 
-			butterHttpClient.setMotorRegister(node.config.motorName, node.config.registerName, node.config.value);
+			butter_response = await butterHttpClient.setMotorRegister(motorName, registerName, value);
 
+			if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
 			// send operation result.
-			var respMsg = { payload: 'success' };
-			node.send(respMsg);
+			node.send({ payload: butter_response.data });
 		});
 	}
 
