@@ -7,18 +7,19 @@
 module.exports = function(RED) {
 	function PlayAnimationNode(config) {
 		RED.nodes.createNode(this, config);
+		this.config = config;
 		var node = this;
 		const butter = require('@butter-robotics/mas-javascript-api');
 
 		node.on('input', async function(msg) {
 			// create butter client.
 			this.warn('creating butter http client.');
-			const butterHttpClient = new butter.HttpClient(node.robotIp);
+			const butterHttpClient = new butter.HttpClient(node.config.robotIp);
 
 			// play animation.
 			// TODO: fix node.animationName is undefined.
-			this.warn(`playing animation - ${node.animationName}`);
-			const resp = await butterHttpClient.playAnimation(node.animationName);
+			this.warn(`playing animation - ${node.config.animationName}`);
+			const resp = await butterHttpClient.playAnimation(node.config.animationName);
 			this.warn(resp);
 			// send operation result.
 			var respMsg = { payload: 'success' };
