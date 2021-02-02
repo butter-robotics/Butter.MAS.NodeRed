@@ -31,7 +31,6 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -64,31 +63,26 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+* Download Node-Red (Dah..)
+  Plese refer to [this link](https://nodered.org/docs/getting-started/windows) for easy installation on Windows.
+  
+* npm install the package with the cmd while inside your user data directory (usually $HOME/.node-red)
   ```sh
-  npm install npm@latest -g
+  npm install node-red-contrib-milab-butter@latest -g
   ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
+* Restart node red and validate that the new nodes exist in your node pallete !
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Once you have completed the prerequisites, the new nodes should appear in all their glory :)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+You can drag the butter nodes to use in your flows 
+
+
+
+_To understand more about Butter, please refer to the [Documentation](https://github.com/butter-robotics/Butter.MAS.JavascriptAPI)_
 
 
 
