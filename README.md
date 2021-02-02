@@ -87,7 +87,7 @@ You can drag the butter nodes to use in your flows:
 Refer to the documentation given inside the node-red GUI to understand the usage better - have fun !
 
 
-_To learn more about Node-Red, please refer to their [Documentation](https://nodered.org/docs/)_
+_To learn more about Node-Red, please refer to their [Documentation](https://nodered.org/docs/)_\
 _To understand more about Butter, please refer to their [Documentation](https://github.com/butter-robotics/Butter.MAS.JavascriptAPI)_
 
 
