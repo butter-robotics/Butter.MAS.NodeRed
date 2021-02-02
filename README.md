@@ -78,11 +78,11 @@ To get a local copy up and running follow these simple steps.
 
 Once you have completed the prerequisites, the new nodes should appear in all their glory in the node pallete :)
 
-![pallete pic](https://github.com/idc-milab/NodeRed-Butter/tree/main/readme-resources/pallete-example.jpg)
+![pallete pic](readme-resources/pallete-example.jpg?raw=true)
 
 You can drag the butter nodes to use in your flows:
 
-![flow pic](https://github.com/idc-milab/NodeRed-Butter/tree/main/readme-resources/flow-example.jpg)
+![flow pic](readme-resources/flow-example.jpg?raw=true)
 
 Refer to the documentation given inside the node-red GUI to understand the usage better - have fun !
 
