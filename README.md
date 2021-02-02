@@ -76,35 +76,25 @@ To get a local copy up and running follow these simple steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Once you have completed the prerequisites, the new nodes should appear in all their glory :)
+Once you have completed the prerequisites, the new nodes should appear in all their glory in the node pallete :)
 
-You can drag the butter nodes to use in your flows 
+![pallete pic](https://github.com/idc-milab/NodeRed-Butter/tree/main/readme-resources/pallete-example.jpg?raw=true)
+
+You can drag the butter nodes to use in your flows:
+
+![flow pic](https://github.com/idc-milab/NodeRed-Butter/tree/main/readme-resources/flow-example.jpg?raw=true)
+
+Refer to the documentation given inside the node-red GUI to understand the usage better - have fun !
 
 
-
-_To understand more about Butter, please refer to the [Documentation](https://github.com/butter-robotics/Butter.MAS.JavascriptAPI)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
-
+_To learn more about Node-Red, please refer to their [Documentation](https://nodered.org/docs/)_
+_To understand more about Butter, please refer to their [Documentation](https://github.com/butter-robotics/Butter.MAS.JavascriptAPI)_
 
 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
+We always have space for improvements, please contact Ron Gissin by mail if you wish to contribute.
 
 <!-- LICENSE -->
 ## License
@@ -116,18 +106,20 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Ron Gissin - ron.gissin@milab.idc.ac.il
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [NodeRed-Butter](https://github.com/idc-milab/NodeRed-Butter)
 
+
+## Authors
+
+* [Ron Gissin](https://github.com/RonGissin)
 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
+* [Benny Megidish](https://github.com/bennymeg)
 
 
 
