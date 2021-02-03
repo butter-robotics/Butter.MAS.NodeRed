@@ -17,9 +17,11 @@
     "url": "git+https://github.com/idc-milab/NodeRed-Butter.git"
   },
   "keywords": [
+    "butter",
     "robotics",
+    "mas",
     "node-red",
-    "butter-mas"
+    "milab"
   ],
   "author": "Ron Gissin",
   "license": "MIT",
