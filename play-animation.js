@@ -26,11 +26,15 @@ module.exports = function(RED) {
 			}
 
 			// play animation.
-			if (isDebugMode) this.warn(`attempting to play animation - ${animationName}`);
-			butter_response = await butterHttpClient.playAnimation(animationName);
-
-			if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
-			node.send({ payload: butter_response.data });
+			try {
+				if (isDebugMode) this.warn(`attempting to play animation - ${animationName}`);
+				butter_response = await butterHttpClient.playAnimation(animationName);
+	
+				if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
+				node.send({ payload: butter_response.data });
+			} catch (error) {
+				if (isDebugMode) this.warn(`failed to play animation - ${animationName}\n${error}`);
+			}
 		});
 	}
 

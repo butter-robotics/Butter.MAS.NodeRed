@@ -1,9 +1,9 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">
+<p align="center" style="margin-bottom: -6px">
   <a href="https://github.com/idc-milab/NodeRed-Butter/">
-    <img src="icons/butter-logo.png" alt="Logo" width="80" height="80">
+    <img src="icons/butter-node-red-logo.png" alt="Logo" width="80" height="108">
   </a>
 
   <h3 align="center">NodeRed-Butter</h3>
