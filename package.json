@@ -5,8 +5,8 @@
 	"main": "butter-node-red.js",
 	"node-red": {
 		"nodes": {
-			"butter-play-animation": "play-animation.js",
-			"butter-set-motor-register": "set-motor-register.js"
+			"butter-play-animation": "nodes/play-animation.js",
+			"butter-set-motor-register": "nodes/set-motor-register.js"
 		}
 	},
 	"scripts": {
@@ -16,7 +16,7 @@
 		"type": "git",
 		"url": "git+https://github.com/idc-milab/NodeRed-Butter.git"
 	},
-	"keywords": [ "butter", "robotics", "mas", "node-red", "milab" ],
+  "keywords": [ "butter", "robotics", "mas", "node-red", "milab" ],
 	"author": "Ron Gissin",
 	"license": "MIT",
 	"bugs": {
