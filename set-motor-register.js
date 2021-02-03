@@ -36,14 +36,18 @@ module.exports = function(RED) {
 			}
 
 			// play animation.
-			if (isDebugMode)
-				this.warn(`setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`);
+			try {
+				if (isDebugMode)
+					this.warn(`setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`);
 
-			butter_response = await butterHttpClient.setMotorRegister(motorName, registerName, value);
+				butter_response = await butterHttpClient.setMotorRegister(motorName, registerName, value);
 
-			if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
-			// send operation result.
-			node.send({ payload: butter_response.data });
+				if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
+				// send operation result.
+				node.send({ payload: butter_response.data });
+			} catch (error) {
+				if (isDebugMode) this.warn(`failed to set register ${registerName}\n${error}`);
+			}
 		});
 	}
 
