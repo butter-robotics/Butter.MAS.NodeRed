@@ -1,12 +1,12 @@
 {
 	"name": "node-red-contrib-milab-butter",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "A node-red collection of nodes that perform robotics operations using butter.mas.api technology (Benny Megidish) ",
 	"main": "butter-node-red.js",
 	"node-red": {
 		"nodes": {
-			"butter-play-animation": "play-animation.js",
-			"butter-set-motor-register": "set-motor-register.js"
+			"butter-play-animation": "nodes/play-animation.js",
+			"butter-set-motor-register": "nodes/set-motor-register.js"
 		}
 	},
 	"scripts": {

@@ -2,8 +2,8 @@
 
 ### Version releases from latest to oldest.
 
-`v1.0.3`
-> nodes updated to use ButterClientProvider as a singleton to get the butter client for their requested robot ip.
+`v1.0.4`
+> project structure and minor UI changes.
 
 `v1.0.2`
 > branding changes - colors, styling, etc.
