@@ -1,5 +1,10 @@
 const butter = require('@butter-robotics/mas-javascript-api');
 
+/*
+    This class defines a singleton implementation for a butter client provider.
+    All other nodes can use this singleton to obtain a butter client connected to a specific ip.
+    The provider manages the pool of existing butter clients in the flow, and creates them lazily upon request.
+*/
 class ButterClientProvider {
 	constructor() {
 		if (!ButterClientProvider.instance) {
@@ -11,6 +16,10 @@ class ButterClientProvider {
 		return ButterClientProvider.instance;
 	}
 
+	/*
+        Gets a butter HTTP client connected to given ip.
+        If client does not exists, it creates it.
+    */
 	GetClient(ip) {
 		if (!this.ipToClientMap.has(ip)) {
 			this.ipToClientMap.set(ip, new butter.HttpClient(ip));
@@ -18,13 +27,9 @@ class ButterClientProvider {
 
 		return this.ipToClientMap.get(ip);
 	}
-
-	get Instance() {
-		return client_instance;
-	}
 }
 
 const instance = new ButterClientProvider();
 Object.freeze(instance);
 
-export default instance;
+module.exports = instance;

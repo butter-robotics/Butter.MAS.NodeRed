@@ -10,8 +10,7 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
-		const butter = require('@butter-robotics/mas-javascript-api');
-		const butterClientProvider = require('butter-client/butter-client-provider');
+		const butterClientProvider = require('./butter-client/butter-client-provider');
 
 		node.on('input', async function(msg) {
 			// create butter client.
