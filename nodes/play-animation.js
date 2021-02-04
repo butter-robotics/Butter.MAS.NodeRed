@@ -9,11 +9,12 @@ module.exports = function(RED) {
 		RED.nodes.createNode(this, config);
 		this.config = config;
 		var node = this;
-		const butter = require('@butter-robotics/mas-javascript-api');
+
+		const butterClientProvider = require('../butter-client/butter-client-provider');
 
 		node.on('input', async function(msg) {
-			// create butter client.
-			const butterHttpClient = new butter.HttpClient(node.config.robotIp);
+			// get butter client.
+			const butterHttpClient = butterClientProvider.GetClient(node.config.robotIp);
 
 			let robotIp = node.config.robotIp;
 			let animationName = node.config.animationName;
@@ -29,7 +30,7 @@ module.exports = function(RED) {
 			try {
 				if (isDebugMode) this.warn(`attempting to play animation - ${animationName}`);
 				butter_response = await butterHttpClient.playAnimation(animationName);
-	
+
 				if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
 				node.send({ payload: butter_response.data });
 			} catch (error) {
