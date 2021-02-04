@@ -2,6 +2,9 @@
 
 ### Version releases from latest to oldest.
 
+`v1.0.4`
+> project structure and minor UI changes.
+
 `v1.0.2`
 > branding changes - colors, styling, etc.
 

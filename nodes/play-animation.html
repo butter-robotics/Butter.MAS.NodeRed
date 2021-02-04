@@ -1,25 +1,19 @@
-<!-- Set Motor Register Node -->
+<!-- Play Animation Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('set-motor-register',{
-        category: 'function',
-        color: '#3f48cc',
+    RED.nodes.registerType('play-animation',{
+        category: 'butter',
+        color: '#5c6bc0',
         defaults: {
             name: {
-                value: "set-motor-register",
+                value: "play-animation",
                 required: true,
              },
             robotIp: {
                 value: "0.0.0.0",
             },
-            motorName: {
+            animationName: {
                 value: "",
-            },
-            registerName: {
-                value: "",
-            },
-            value: {
-                value: 0,
             },
             debugMode: {
                 value: false
@@ -28,17 +22,17 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "set-motor-register",
+        paletteLabel: "play-animation",
         label: function() {
-            return this.name||"set-motor-register";
+            return this.name||"play-animation";
         },
         align: 'right',
         outputLabels: ["operation result"],
-        inputLabels: ["op instructions (optional)"]
+        inputLabels: ["parameters (optional)"]
     });
 </script>
 
-<script type="text/html" data-template-name="set-motor-register">
+<script type="text/html" data-template-name="play-animation">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -48,32 +42,20 @@
         <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
     </div>
     <div class="form-row">
-        <label for="node-input-motorName"><i class="fa fa-tag"></i> Motor Name</label>
-        <input type="text" id="node-input-motorName" placeholder="motor name here">
-    </div>
-    <div class="form-row">
-        <label for="node-input-registerName"><i class="fa fa-tag"></i> Register Name</label>
-        <select id="node-input-registerName">
-            <option value="goal-position">goal-position</option>
-            <option value="moving-speed">moving-speed</option>
-            <option value="torque-enable">torque-enable</option>
-        </select>
-    </div>
-    <div class="form-row">
-        <label for="node-input-value"><i class="fa fa-tag"></i> Value</label>
-        <input type="number" id="node-input-value">
+        <label for="node-input-animationName"><i class="fa fa-tag"></i> Animation Name</label>
+        <input type="text" id="node-input-animationName" placeholder="">
     </div>
     <div class="form-row">
         <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
         <input type="checkbox" id="node-input-debugMode" placeholder="">
     </div>
     <div class="form-tips"><b>Note !</b> If the node receives as input a json with the above properties (not including name and debug mode properties), the node will disregard the ones provided in the UI.
-        See the help section to understand how this json should be composed.</div>
+    See the help section to understand how this json can be composed.</div>
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
-<script type="text/html" data-help-name="set-motor-register">
-    <p>Sets a register to a value in a specific motor.</p>
+<script type="text/html" data-help-name="play-animation">
+    <p>Plays an animation on a robot.</p>
     <h3>Inputs</h3>
     <ol class="node-ports">
         <li>parameters (Optional)
@@ -83,9 +65,7 @@
                     <code>
                     { <br>
                         "robotIp": some-robot-ip, <br>
-                        "motorName": some-motor-name, <br>
-                        "registerName": some-register-name, <br>
-                        "value": some-register-value, <br>
+                        "animationName": some-animation-name, <br>
                     }
                     </code>
                 </dd>
@@ -103,10 +83,10 @@
     </ol>
 
     <h3>Details</h3>
-    <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.
-    <p><code>node.motorName</code> is used to indicate which motor to manipulate.</p>
-    <p><code>node.registerName</code> is used to indicate which motor register to write to.</p>
-    <p><code>node.value</code> is used to indicate which integer value to write to the register.</p>
+    <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.</p>
+    <p><code>node.animationName</code> is used to indicate which animation to run.</p>
     <p><code>node.debugMode</code> if true, the node will print logs to the debug console.</p>
     <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
 </script>
+
+
