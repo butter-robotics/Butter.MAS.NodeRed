@@ -11,10 +11,11 @@ module.exports = function(RED) {
 		var node = this;
 
 		const butter = require('@butter-robotics/mas-javascript-api');
+		const butterClientProvider = require('butter-client/butter-client-provider');
 
 		node.on('input', async function(msg) {
 			// create butter client.
-			const butterHttpClient = new butter.HttpClient(node.config.robotIp);
+			const butterHttpClient = butterClientProvider.GetClient(node.config.robotIp);
 
 			let robotIp = node.config.robotIp;
 			let motorName = node.config.motorName;
@@ -38,7 +39,9 @@ module.exports = function(RED) {
 			// play animation.
 			try {
 				if (isDebugMode)
-					this.warn(`setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`);
+					this.warn(
+						`setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`
+					);
 
 				butter_response = await butterHttpClient.setMotorRegister(motorName, registerName, value);
 
