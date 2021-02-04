@@ -2,6 +2,9 @@
 
 ### Version releases from latest to oldest.
 
+`v1.0.5`
+> add ButterClientProvider singleton to provide clients on the fly.
+
 `v1.0.4`
 > project structure and minor UI changes.
 
