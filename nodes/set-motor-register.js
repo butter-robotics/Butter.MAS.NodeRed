@@ -10,7 +10,7 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
-		const butterClientProvider = require('./butter-client/butter-client-provider');
+		const butterClientProvider = require('../butter-client/butter-client-provider');
 
 		node.on('input', async function(msg) {
 			// create butter client.
