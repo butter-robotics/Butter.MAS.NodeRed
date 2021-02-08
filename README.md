@@ -93,7 +93,13 @@ _To understand more about Butter, please refer to their [Documentation](https://
 <!-- CONTRIBUTING -->
 ## Contributing
 
-We always have space for improvements, please contact Ron Gissin by mail if you wish to contribute.
+We always have space for improvements, here is how to help:
+
+1) Fork the repo.
+2) Submit a PR.
+3) Bump the version in package.json.
+4) Write a concise summary of your change in the RELEASE-NOTES.md file.
+5) _If your contribution includes a new node in the UI or any client facing feature, consult with @RonGissin about updating the example-flow file._  
 
 <!-- LICENSE -->
 ## License
