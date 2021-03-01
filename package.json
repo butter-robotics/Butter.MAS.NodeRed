@@ -6,7 +6,8 @@
 	"node-red": {
 		"nodes": {
 			"butter-play-animation": "nodes/play-animation.js",
-			"butter-set-motor-register": "nodes/set-motor-register.js"
+			"butter-set-motor-register": "nodes/set-motor-register.js",
+			"butter-get-motor-register": "nodes/get-motor-register.js"
 		}
 	},
 	"scripts": {
