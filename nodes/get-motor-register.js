@@ -1,8 +1,8 @@
 /*
-    SetMotorRegister node
+    GetMotorRegister node
         * input: message (any).
-        * command: set a value to a motor register on configured robot.
-        * output: operation success/failure response.
+        * command: get a value of a motor register on configured robot.
+        * output:  response with the value of the asked motor.
 */
 
 module.exports = function(RED) {
@@ -33,7 +33,7 @@ module.exports = function(RED) {
 				registerName = msg.payload.registerName;
 			}
 
-			// play animation.
+			// getting motor register value.
 			try {
 				if (isDebugMode)
 					this.warn(
