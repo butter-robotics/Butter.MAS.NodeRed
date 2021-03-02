@@ -35,7 +35,7 @@ module.exports = function(RED) {
 				value = msg.payload.value;
 			}
 
-			// play animation.
+			// sets rhe motor.
 			try {
 				if (isDebugMode)
 					this.warn(
