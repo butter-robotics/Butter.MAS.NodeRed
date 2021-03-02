@@ -12,7 +12,10 @@
             robotIp: {
                 value: "0.0.0.0",
             },
-            animationName: {
+            motorName: {
+                value: "",
+            },
+            registerName: {
                 value: "",
             },
             debugMode: {
@@ -42,20 +45,23 @@
         <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
     </div>
     <div class="form-row">
-        <label for="node-input-animationName"><i class="fa fa-tag"></i> Animation Name</label>
-        <input type="text" id="node-input-animationName" placeholder="">
+        <label for="node-input-motorName"><i class="fa fa-tag"></i> Motor Name</label>
+        <input type="text" id="node-input-motorName" placeholder="motor name here">
+    </div>
+    <div class="form-row">
+        <label for="node-input-registerName"><i class="fa fa-tag"></i> Register Name</label>
     </div>
     <div class="form-row">
         <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
         <input type="checkbox" id="node-input-debugMode" placeholder="">
     </div>
     <div class="form-tips"><b>Note !</b> If the node receives as input a json with the above properties (not including name and debug mode properties), the node will disregard the ones provided in the UI.
-    See the help section to understand how this json can be composed.</div>
+        See the help section to understand how this json should be composed.</div>
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
 <script type="text/html" data-help-name="get-motor-register">
-    <p>Gets a register value in a specific motor.</p>
+    <p>Get the register value of a specific motor.</p>
     <h3>Inputs</h3>
     <ol class="node-ports">
         <li>parameters (Optional)
