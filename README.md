@@ -77,11 +77,11 @@ To get a local copy up and running follow these simple steps.
 
 Once you have completed the prerequisites, the new nodes should appear in all their glory in the node pallete :)
 
-![pallete pic](readme-resources/pallete-example.jpg?raw=true)
+![pallete pic](readme-resources/pallete-example.png?raw=true)
 
 You can drag the butter nodes to use in your flows:
 
-![flow pic](readme-resources/flow-example.jpg?raw=true)
+![flow pic](readme-resources/flow-example.png?raw=true)
 
 Refer to the documentation given inside the node-red GUI to understand the usage better - have fun !
 
