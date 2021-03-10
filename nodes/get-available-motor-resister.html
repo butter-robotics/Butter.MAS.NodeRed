@@ -1,12 +1,12 @@
-<!-- get-available-aimations Node -->
+<!-- Get get-available-motor-resister Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('get-available-aimations',{
+    RED.nodes.registerType('get-available-motor-resister',{
         category: 'butter',
         color: '#5c6bc0',
         defaults: {
             name: {
-                value: "get-available-aimations",
+                value: "get-available-motor-resister",
                 required: true,
              },
             robotIp: {
@@ -22,9 +22,9 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "get-available-aimations",
+        paletteLabel: "get-available-motor-resister",
         label: function() {
-            return this.name||"get-available-aimations";
+            return this.name||"get-available-motor-resister";
         },
         align: 'right',
         outputLabels: ["operation result"],
@@ -32,7 +32,7 @@
     });
 </script>
 
-<script type="text/html" data-template-name="get-available-aimations">
+<script type="text/html" data-template-name="get-available-motor-resister">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -55,7 +55,7 @@
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
-<script type="text/html" data-help-name="get-available-aimations">
+<script type="text/html" data-help-name="get-available-motor-resister">
     <p>Get the register value of a specific motor.</p>
     <h3>Inputs</h3>
     <ol class="node-ports">
