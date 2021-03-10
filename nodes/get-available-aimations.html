@@ -1,21 +1,18 @@
 <!-- Get motor register Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('get-motor-register',{
+    RED.nodes.registerType('get-available-aimations',{
         category: 'butter',
         color: '#5c6bc0',
         defaults: {
             name: {
-                value: "get-motor-register",
+                value: "get-available-aimations",
                 required: true,
              },
             robotIp: {
                 value: "0.0.0.0",
             },
-            motorName: {
-                value: "",
-            },
-            registerName: {
+            reload: {
                 value: "",
             },
             debugMode: {
@@ -25,9 +22,9 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "get-motor-register",
+        paletteLabel: "get-available-aimations",
         label: function() {
-            return this.name||"get-motor-register";
+            return this.name||"get-available-aimations";
         },
         align: 'right',
         outputLabels: ["operation result"],
@@ -35,7 +32,7 @@
     });
 </script>
 
-<script type="text/html" data-template-name="get-motor-register">
+<script type="text/html" data-template-name="get-available-aimations">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -45,16 +42,9 @@
         <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
     </div>
     <div class="form-row">
-        <label for="node-input-motorName"><i class="fa fa-tag"></i> Motor Name</label>
-        <input type="text" id="node-input-motorName" placeholder="motor name here">
-    </div>
-    <div class="form-row">
-        <label for="node-input-registerName"><i class="fa fa-tag"></i> Register Name</label>
-        <select id="node-input-registerName">
-            <option value="goal-position">goal-position</option>
-            <option value="moving-speed">moving-speed</option>
-            <option value="torque-enable">torque-enable</option>
-        </select>
+        <label for="node-input-reload"><i class="fa fa-tag"></i> Motor Name</label>
+        <!-- to change to booleane -->
+        <input type="text" id="node-input-motorName" placeholder="yes/no">
     </div>
     <div class="form-row">
         <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
@@ -65,7 +55,7 @@
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
-<script type="text/html" data-help-name="get-motor-register">
+<script type="text/html" data-help-name="get-available-aimations">
     <p>Get the register value of a specific motor.</p>
     <h3>Inputs</h3>
     <ol class="node-ports">
@@ -76,8 +66,7 @@
                     <code>
                     { <br>
                         "robotIp": some-robot-ip, <br>
-                        "motorName": some-motor-name, <br>
-                        "registerName": some-register-name, <br>
+                        "reload": yes/no, <br>
                     }
                     </code>
                 </dd>
@@ -96,8 +85,7 @@
 
     <h3>Details</h3>
     <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.
-    <p><code>node.motorName</code> is used to indicate which motor to manipulate.</p>
-    <p><code>node.registerName</code> is used to indicate which motor register to write to.</p>
+    <p><code>node.reload</code> is used to indicate if to reload the animations.</p>
     <p><code>node.debugMode</code> if true, the node will print logs to the debug console.</p>
     <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
 </script>

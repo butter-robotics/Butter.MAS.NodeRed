@@ -1,12 +1,12 @@
 /*
-    GetMotorRegister node
+    GetAvailableAnimations  node
         * input: message (any).
-        * command: get a value of a motor register on configured robot.
-        * output:  response with the value of the asked motor.
+        * command: get all available animations  of a the configured robot.
+        * output:  response with the list of tha available animations.
 */
 
 module.exports = function(RED) {
-	function GetMotorRegisterNode(config) {
+	function GetAvailableAnimationsNode(config) {
 		RED.nodes.createNode(this, config);
 		this.config = config;
 		var node = this;
@@ -18,39 +18,37 @@ module.exports = function(RED) {
 			const butterHttpClient = butterClientProvider.GetClient(node.config.robotIp);
 
 			let robotIp = node.config.robotIp;
-			let motorName = node.config.motorName;
-			let registerName = node.config.registerName;
+			let reload = node.config.reload;
 			let isDebugMode = node.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
 			if (
-				msg.payload.robotIp != undefined &&
-				msg.payload.motorName != undefined &&
-				msg.payload.registerName != undefined
+				msg.payload.robotIp != undefined 
 			) {
 				robotIp = msg.payload.robotIp;
-				motorName = msg.payload.motorName;
-				registerName = msg.payload.registerName;
+				reload = msg.payload.reload;
 			}
 
-			// getting motor register value.
+			// getting Available Animations.
 			try {
 				if (isDebugMode)
 					this.warn(
-						`getting the value of register ${registerName} of motor ${motorName} of robot ${robotIp} `
+						`getting the Available Animations of robot ${robotIp} `
 					);
-				butter_response = await butterHttpClient.getMotorRegister(motorName, registerName);
+				let flag = false;
+				if(reload) flag = true;
+				butter_response = await butterHttpClient.getAvailableAnimations(flag);
 
 				if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
 				// prints operation result.
 				console.log(butter_response.data);
 				node.send({ payload: butter_response.data });
 			} catch (error) {
-				if (isDebugMode) this.warn(`failed to get register ${registerName}\n${error}`);
+				if (isDebugMode) this.warn(`failed to get the robot animations \n${error}`);
 			}
 		});
 	}
 
 	// register node type.
-	RED.nodes.registerType('get-motor-register', GetMotorRegisterNode);
+	RED.nodes.registerType('get-available-aimations', GetAvailableAnimationsNode);
 };
