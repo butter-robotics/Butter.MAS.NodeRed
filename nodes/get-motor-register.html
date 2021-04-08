@@ -1,12 +1,12 @@
-<!-- Set Motor Register Node -->
+<!-- Get motor register Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('set-motor-register',{
+    RED.nodes.registerType('get-motor-register',{
         category: 'butter',
         color: '#5c6bc0',
         defaults: {
             name: {
-                value: "set-motor-register",
+                value: "get-motor-register",
                 required: true,
              },
             robotIp: {
@@ -18,9 +18,6 @@
             registerName: {
                 value: "",
             },
-            value: {
-                value: 0,
-            },
             debugMode: {
                 value: false
             }
@@ -28,17 +25,17 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "set-motor-register",
+        paletteLabel: "get-motor-register",
         label: function() {
-            return this.name||"set-motor-register";
+            return this.name||"get-motor-register";
         },
         align: 'right',
         outputLabels: ["operation result"],
-        inputLabels: ["op instructions (optional)"]
+        inputLabels: ["parameters (optional)"]
     });
 </script>
 
-<script type="text/html" data-template-name="set-motor-register">
+<script type="text/html" data-template-name="get-motor-register">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -56,16 +53,21 @@
         <select id="node-input-registerName">
             <option value="return-level">return-level</option>
             <option value="upper-limit-voltage">upper-limit-voltage</option>
+            <option value="lower-limit-voltage">lower-limit-voltage</option>
             <option value="multi-turn-offset">multi-turn-offset</option>
             <option value="led">led</option>
             <option value="moving-speed">moving-speed</option>
+            <option value="present-position">present-position</option>
             <option value="max-torque">max-torque</option>
             <option value="punch">punch</option>
             <option value="goal-acceleration">goal-acceleration</option>
-            <option value="goal-position">goal-position</option>
-            <option value="lower-limit-voltage">lower-limit-voltage</option>
+            <option value="version-of-firmware">version-of-firmware</option>
+            <option value="present-load">present-load</option>
+            <option value="present-voltage">present-voltage</option>
             <option value="id">id</option>
+            <option value="moving">moving</option>
             <option value="return-delay-time">return-delay-time</option>
+            <option value="present-temprature">present-temprature</option>
             <option value="baud-rate">baud-rate</option>
             <option value="ccw-angle-limit">ccw-angle-limit</option>
             <option value="torque-limit">torque-limit</option>
@@ -73,16 +75,15 @@
             <option value="limit-temprature">limit-temprature</option>
             <option value="resolution-driver">resolution-driver</option>
             <option value="cw-angle-limit">cw-angle-limit</option>
+            <option value="registered-instruction">registered-instruction</option>
             <option value="i-gain">i-gain</option>
             <option value="alarm-shutdown">alarm-shutdown</option>
             <option value="torque-enable">torque-enable</option>
+            <option value="model-number">model-number</option>
+            <option value="present-speed">present-speed</option>
             <option value="p-gain">p-gain</option>
             <option value="alarm-led">alarm-led</option>
         </select>
-    </div>
-    <div class="form-row">
-        <label for="node-input-value"><i class="fa fa-tag"></i> Value</label>
-        <input type="number" id="node-input-value">
     </div>
     <div class="form-row">
         <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
@@ -93,8 +94,8 @@
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
-<script type="text/html" data-help-name="set-motor-register">
-    <p>Sets a register to a value in a specific motor.</p>
+<script type="text/html" data-help-name="get-motor-register">
+    <p>Get the register value of a specific motor.</p>
     <h3>Inputs</h3>
     <ol class="node-ports">
         <li>parameters (Optional)
@@ -106,7 +107,6 @@
                         "robotIp": some-robot-ip, <br>
                         "motorName": some-motor-name, <br>
                         "registerName": some-register-name, <br>
-                        "value": some-register-value, <br>
                     }
                     </code>
                 </dd>
@@ -127,7 +127,6 @@
     <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.
     <p><code>node.motorName</code> is used to indicate which motor to manipulate.</p>
     <p><code>node.registerName</code> is used to indicate which motor register to write to.</p>
-    <p><code>node.value</code> is used to indicate which integer value to write to the register.</p>
     <p><code>node.debugMode</code> if true, the node will print logs to the debug console.</p>
     <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
 </script>

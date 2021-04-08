@@ -22,7 +22,10 @@ class ButterClientProvider {
     */
 	GetClient(ip) {
 		if (!this.ipToClientMap.has(ip)) {
-			this.ipToClientMap.set(ip, new butter.HttpClient(ip));
+			const client = new butter.HttpClient(ip);
+			// lengthen timeout.
+			client.timeout = 120;
+			this.ipToClientMap.set(ip, client);
 		}
 
 		return this.ipToClientMap.get(ip);

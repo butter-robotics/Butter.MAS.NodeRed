@@ -1,0 +1,91 @@
+<!-- get-available-aimations Node -->
+
+<script type="text/javascript">
+    RED.nodes.registerType('get-available-aimations',{
+        category: 'butter',
+        color: '#5c6bc0',
+        defaults: {
+            name: {
+                value: "get-available-aimations",
+                required: true,
+             },
+            robotIp: {
+                value: "0.0.0.0",
+            },
+            reload: {
+                value: "",
+            },
+            debugMode: {
+                value: false
+            }
+        },
+        inputs:1,
+        outputs:1,
+        icon: "icons/butter-logo-white.png",
+        paletteLabel: "get-available-aimations",
+        label: function() {
+            return this.name||"get-available-aimations";
+        },
+        align: 'right',
+        outputLabels: ["operation result"],
+        inputLabels: ["parameters (optional)"]
+    });
+</script>
+
+<script type="text/html" data-template-name="get-available-aimations">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-robotIp"><i class="fa fa-tag"></i> Robot IP</label>
+        <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-reload"><i class="fa fa-tag"></i> Motor Name</label>
+        <!-- to change to booleane fix the condition-->
+        <input type="text" id="node-input-motorName" placeholder="yes/no">
+    </div>
+    <div class="form-row">
+        <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
+        <input type="checkbox" id="node-input-debugMode" placeholder="">
+    </div>
+    <div class="form-tips"><b>Note !</b> If the node receives as input a json with the above properties (not including name and debug mode properties), the node will disregard the ones provided in the UI.
+        See the help section to understand how this json should be composed.</div>
+    <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
+</script>
+
+<script type="text/html" data-help-name="get-available-aimations">
+    <p>Get the register value of a specific motor.</p>
+    <h3>Inputs</h3>
+    <ol class="node-ports">
+        <li>parameters (Optional)
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">json object</span></dt>
+                <dd>The payload has to be of the following format: <br>
+                    <code>
+                    { <br>
+                        "robotIp": some-robot-ip, <br>
+                        "reload": yes/no, <br>
+                    }
+                    </code>
+                </dd>
+            </dl>
+        </li>
+   </ol>
+    <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>Operation Result
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">string</span></dt>
+                 <dd>the result of the butter command.</dd>
+             </dl>
+         </li>
+    </ol>
+
+    <h3>Details</h3>
+    <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.
+    <p><code>node.reload</code> is used to indicate if to reload the animations.</p>
+    <p><code>node.debugMode</code> if true, the node will print logs to the debug console.</p>
+    <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
+</script>
