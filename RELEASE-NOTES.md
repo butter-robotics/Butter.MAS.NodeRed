@@ -2,6 +2,9 @@
 
 ### Version releases from latest to oldest.
 
+`v1.1.6`
+> added getMotorRegister node.
+
 `v1.0.6`
 > added basic test, and ci-cd workflow.
 
