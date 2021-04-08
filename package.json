@@ -18,13 +18,7 @@
 		"type": "git",
 		"url": "git+https://github.com/idc-milab/NodeRed-Butter.git"
 	},
-	"keywords": [
-		"butter",
-		"robotics",
-		"mas",
-		"node-red",
-		"milab"
-	],
+	"keywords": [ "butter", "robotics", "mas", "node-red", "milab" ],
 	"author": "Ron Gissin",
 	"license": "MIT",
 	"bugs": {
@@ -32,7 +26,7 @@
 	},
 	"homepage": "https://github.com/idc-milab/NodeRed-Butter#readme",
 	"dependencies": {
-		"@butter-robotics/mas-javascript-api": "^0.12.7"
+		"@butter-robotics/mas-javascript-api": "^0.13.0"
 	},
 	"devDependencies": {
 		"jest": "^26.6.3",

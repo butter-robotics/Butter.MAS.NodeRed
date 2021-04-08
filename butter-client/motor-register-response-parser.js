@@ -4,7 +4,7 @@ class MotorRegisterResponseParser {
 	constructor() {}
 
 	parse(resp) {
-		let respData = JSON.parse(resp.data);
+		let respData = typeof resp.data === 'string' ? JSON.parse(resp.data) : resp.data;
 
 		if ('exception' in respData) {
 			throw new ButterException(respData.exception);
@@ -12,7 +12,7 @@ class MotorRegisterResponseParser {
 
 		const result = respData.Result;
 
-		if ('Failed' in result) {
+		if (result.includes('Failed')) {
 			return null;
 		}
 

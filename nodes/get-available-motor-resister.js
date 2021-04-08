@@ -22,24 +22,19 @@ module.exports = function(RED) {
 			let isDebugMode = node.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (
-				msg.payload.robotIp != undefined 
-			) {
+			if (msg.payload.robotIp != undefined) {
 				robotIp = msg.payload.robotIp;
 				reload = msg.payload.reload;
 			}
 
 			// getting Available Motor Registers.
 			try {
-				if (isDebugMode)
-					this.warn(
-						`getting the Available get Available Motor Registers of robot: ${robotIp} `
-					);
+				if (isDebugMode) this.warn(`getting the Available get Available Motor Registers of robot: ${robotIp} `);
 				let flag = false;
-				if(reload) flag = true;
-				butter_response = await butterHttpClient.getAvailableMotorRegisters(motorName, readableOnly=False);
+				if (reload) flag = true;
+				butter_response = await butterHttpClient.getAvailableMotorRegisters(motorName, (readableOnly = False));
 
-				if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
+				if (isDebugMode) this.warn(`butter response is ${JSON.stringify(butter_response.data)}`);
 				// prints operation result.
 				console.log(butter_response.data);
 				node.send({ payload: butter_response.data });

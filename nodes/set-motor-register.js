@@ -42,7 +42,7 @@ module.exports = function(RED) {
 			try {
 				butter_response = await this.butterHttpClient.setMotorRegister(motorName, registerName, value);
 
-				this.debugLogger.logIfDebugMode(`butter response is ${butter_response.data}`);
+				this.debugLogger.logIfDebugMode(`butter response is ${JSON.stringify(butter_response.data)}`);
 				// send operation result.
 				this.send({ payload: butter_response.data });
 			} catch (error) {

@@ -44,7 +44,7 @@ module.exports = function(RED) {
 				this.debugLogger.logIfDebugMode(butterResponse);
 				parsedResponse = this.butterResponseParser.parse(butterResponse);
 
-				this.debugLogger.logIfDebugMode(`butter response is ${butterResponse.data}`);
+				this.debugLogger.logIfDebugMode(`butter response is ${JSON.stringify(butterResponse.data)}`);
 				this.debugLogger.logIfDebugMode(`parsed motor register value is ${parsedResponse}`);
 
 				this.send({ payload: { register: registerName, value: parsedResponse } });
