@@ -8,19 +8,18 @@ module.exports = function(RED) {
 	function SetMotorRegisterNode(config) {
 		RED.nodes.createNode(this, config);
 		this.config = config;
-		var node = this;
 
+		const DebugLogger = require('../logger/debug_logger');
 		const butterClientProvider = require('../butter-client/butter-client-provider');
 
-		node.on('input', async function(msg) {
-			// create butter client.
-			const butterHttpClient = butterClientProvider.GetClient(node.config.robotIp);
+		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
+		this.debugLogger = new DebugLogger(this, this.config.debugMode);
 
-			let robotIp = node.config.robotIp;
-			let motorName = node.config.motorName;
-			let registerName = node.config.registerName;
-			let value = node.config.value;
-			let isDebugMode = node.config.debugMode;
+		this.on('input', async function(msg) {
+			let robotIp = this.config.robotIp;
+			let motorName = this.config.motorName;
+			let registerName = this.config.registerName;
+			let value = this.config.value;
 
 			// check if message has correct json payload - if yes run it instead.
 			if (
@@ -35,20 +34,19 @@ module.exports = function(RED) {
 				value = msg.payload.value;
 			}
 
-			// play animation.
+			// sets the motor.
+			this.debugLogger.logIfDebugMode(
+				`setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`
+			);
+
 			try {
-				if (isDebugMode)
-					this.warn(
-						`setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`
-					);
+				butter_response = await this.butterHttpClient.setMotorRegister(motorName, registerName, value);
 
-				butter_response = await butterHttpClient.setMotorRegister(motorName, registerName, value);
-
-				if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
+				this.debugLogger.logIfDebugMode(`butter response is ${JSON.stringify(butter_response.data)}`);
 				// send operation result.
-				node.send({ payload: butter_response.data });
+				this.send({ payload: butter_response.data });
 			} catch (error) {
-				if (isDebugMode) this.warn(`failed to set register ${registerName}\n${error}`);
+				this.debugLogger.logIfDebugMode(`failed to set register ${registerName}\n${error}`);
 			}
 		});
 	}

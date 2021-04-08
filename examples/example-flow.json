@@ -49,7 +49,7 @@
 		"payload": "",
 		"payloadType": "str",
 		"x": 130,
-		"y": 428,
+		"y": 560,
 		"wires": [ [ "979e5182.94371" ] ]
 	},
 	{
@@ -63,7 +63,7 @@
 		"value": "0",
 		"debugMode": true,
 		"x": 370,
-		"y": 428,
+		"y": 560,
 		"wires": [ [ "cad62f92.e9375" ] ]
 	},
 	{
@@ -77,7 +77,7 @@
 		"value": "2000",
 		"debugMode": false,
 		"x": 630,
-		"y": 428,
+		"y": 560,
 		"wires": [ [] ]
 	},
 	{
@@ -97,7 +97,7 @@
 		"name": "Do the same with set-motor-register to change your specified motor register value ",
 		"info": "Double click the set motor register node to learn more about it.",
 		"x": 360,
-		"y": 248,
+		"y": 380,
 		"wires": []
 	},
 	{
@@ -107,7 +107,7 @@
 		"name": "Chain nodes together to make a more complicated behavior",
 		"info": "In this example, the first set-motor-register node sets the motor's speed to be 0 (max speed).\nThe second node immediately sets the goal position to 2000, effectively moving the motor to position 2000 in maximum speed !",
 		"x": 300,
-		"y": 368,
+		"y": 500,
 		"wires": []
 	},
 	{
@@ -124,7 +124,7 @@
 		"payload": "",
 		"payloadType": "date",
 		"x": 130,
-		"y": 308,
+		"y": 440,
 		"wires": [ [ "1fcb070.04addf9" ] ]
 	},
 	{
@@ -132,13 +132,13 @@
 		"type": "set-motor-register",
 		"z": "22ff5fde.22e09",
 		"name": "set-motor-register",
-		"robotIp": "192.168.57.34",
-		"motorName": "turnone",
-		"registerName": "moving-speed",
-		"value": 0,
-		"debugMode": false,
+		"robotIp": "192.168.57.30",
+		"motorName": "bottom",
+		"registerName": "goal-position",
+		"value": "2000",
+		"debugMode": true,
 		"x": 370,
-		"y": 308,
+		"y": 440,
 		"wires": [ [] ]
 	},
 	{
@@ -149,6 +149,56 @@
 		"info": "",
 		"x": 350,
 		"y": 60,
+		"wires": []
+	},
+	{
+		"id": "750dc4a8.0d297c",
+		"type": "comment",
+		"z": "22ff5fde.22e09",
+		"name": "",
+		"info": "",
+		"x": 140,
+		"y": 620,
+		"wires": []
+	},
+	{
+		"id": "8a088e72.32769",
+		"type": "inject",
+		"z": "22ff5fde.22e09",
+		"name": "",
+		"props": [ { "p": "payload" }, { "p": "topic", "vt": "str" } ],
+		"repeat": "",
+		"crontab": "",
+		"once": false,
+		"onceDelay": 0.1,
+		"topic": "",
+		"payload": "",
+		"payloadType": "date",
+		"x": 140,
+		"y": 320,
+		"wires": [ [ "7e405d03.0c9084" ] ]
+	},
+	{
+		"id": "7e405d03.0c9084",
+		"type": "get-motor-register",
+		"z": "22ff5fde.22e09",
+		"name": "get-motor-register",
+		"robotIp": "192.168.57.30",
+		"motorName": "asdf",
+		"registerName": "present-position",
+		"debugMode": true,
+		"x": 370,
+		"y": 320,
+		"wires": [ [] ]
+	},
+	{
+		"id": "6c2e2731.60eec8",
+		"type": "comment",
+		"z": "22ff5fde.22e09",
+		"name": "Do the same with set-motor-register to get the value of a motor register ",
+		"info": "",
+		"x": 330,
+		"y": 260,
 		"wires": []
 	}
 ]
