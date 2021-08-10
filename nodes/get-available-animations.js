@@ -50,5 +50,5 @@ module.exports = function(RED) {
 	}
 
 	// register node type.
-	RED.nodes.registerType('get-available-aimations', GetAvailableAnimationsNode);
+	RED.nodes.registerType('get-available-animations', GetAvailableAnimationsNode);
 };

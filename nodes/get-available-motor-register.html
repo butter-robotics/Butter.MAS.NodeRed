@@ -1,12 +1,12 @@
-<!-- Get get-available-motor-resister Node -->
+<!-- Get get-available-motor-register Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('get-available-motor-resister',{
+    RED.nodes.registerType('get-available-motor-register',{
         category: 'butter',
         color: '#5c6bc0',
         defaults: {
             name: {
-                value: "get-available-motor-resister",
+                value: "get-available-motor-register",
                 required: true,
              },
             robotIp: {
@@ -22,9 +22,9 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "get-available-motor-resister",
+        paletteLabel: "get-available-motor-register",
         label: function() {
-            return this.name||"get-available-motor-resister";
+            return this.name || "get-available-motor-register";
         },
         align: 'right',
         outputLabels: ["operation result"],
@@ -32,7 +32,7 @@
     });
 </script>
 
-<script type="text/html" data-template-name="get-available-motor-resister">
+<script type="text/html" data-template-name="get-available-motor-register">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -43,7 +43,7 @@
     </div>
     <div class="form-row">
         <label for="node-input-reload"><i class="fa fa-tag"></i> Motor Name</label>
-        <!-- to change to booleane fix the condition-->
+        <!-- to change to boolean fix the condition-->
         <input type="text" id="node-input-motorName" placeholder="yes/no">
     </div>
     <div class="form-row">
@@ -55,7 +55,7 @@
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
-<script type="text/html" data-help-name="get-available-motor-resister">
+<script type="text/html" data-help-name="get-available-motor-register">
     <p>Get the register value of a specific motor.</p>
     <h3>Inputs</h3>
     <ol class="node-ports">

@@ -1,12 +1,12 @@
-<!-- get-available-aimations Node -->
+<!-- get-available-animations Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('get-available-aimations',{
+    RED.nodes.registerType('get-available-animations',{
         category: 'butter',
         color: '#5c6bc0',
         defaults: {
             name: {
-                value: "get-available-aimations",
+                value: "get-available-animations",
                 required: true,
              },
             robotIp: {
@@ -22,9 +22,9 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "get-available-aimations",
+        paletteLabel: "get-available-animations",
         label: function() {
-            return this.name||"get-available-aimations";
+            return this.name || "get-available-animations";
         },
         align: 'right',
         outputLabels: ["operation result"],
@@ -32,7 +32,7 @@
     });
 </script>
 
-<script type="text/html" data-template-name="get-available-aimations">
+<script type="text/html" data-template-name="get-available-animations">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -43,7 +43,7 @@
     </div>
     <div class="form-row">
         <label for="node-input-reload"><i class="fa fa-tag"></i> Motor Name</label>
-        <!-- to change to booleane fix the condition-->
+        <!-- to change to boolean fix the condition-->
         <input type="text" id="node-input-motorName" placeholder="yes/no">
     </div>
     <div class="form-row">
@@ -55,7 +55,7 @@
     <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
 </script>
 
-<script type="text/html" data-help-name="get-available-aimations">
+<script type="text/html" data-help-name="get-available-animations">
     <p>Get the register value of a specific motor.</p>
     <h3>Inputs</h3>
     <ol class="node-ports">
