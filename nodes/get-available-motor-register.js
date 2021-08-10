@@ -45,5 +45,5 @@ module.exports = function(RED) {
 	}
 
 	// register node type.
-	RED.nodes.registerType('get-available-motor-resister', getAvailableMotorRegisters);
+	RED.nodes.registerType('get-available-motor-register', getAvailableMotorRegisters);
 };
