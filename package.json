@@ -1,6 +1,6 @@
 {
 	"name": "node-red-contrib-butter",
-	"version": "1.1.7",
+	"version": "2.0.0",
 	"description": "A node-red collection of nodes that perform robotics operations using Butter Robotics platform",
 	"main": "butter-node-red.js",
 	"node-red": {
