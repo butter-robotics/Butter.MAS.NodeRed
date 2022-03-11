@@ -98,32 +98,16 @@ We always have space for improvements, here is how to help:
 1) Fork the repo.
 2) Submit a PR.
 3) Bump the version in package.json.
-4) Write a concise summary of your change in the RELEASE-NOTES.md file.
-5) _If your contribution includes a new node in the UI or any client facing feature, consult with @RonGissin about updating the example-flow file._  
+4) Write a concise summary of your change in the RELEASE-NOTES.md file. 
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Ron Gissin - ron.gissin@milab.idc.ac.il
-
-Project Link: [NodeRed-Butter](https://github.com/idc-milab/NodeRed-Butter)
-
+Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 
 ## Authors
 
 * [Ron Gissin](https://github.com/RonGissin)
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
 * [Benny Megidish](https://github.com/bennymeg)
 
 
