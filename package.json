@@ -1,7 +1,7 @@
 {
-	"name": "node-red-contrib-milab-butter",
+	"name": "node-red-contrib-butter",
 	"version": "1.1.7",
-	"description": "A node-red collection of nodes that perform robotics operations using butter.mas.api technology (Benny Megidish) ",
+	"description": "A node-red collection of nodes that perform robotics operations using Butter Robotics platform",
 	"main": "butter-node-red.js",
 	"node-red": {
 		"nodes": {
@@ -16,17 +16,17 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/idc-milab/NodeRed-Butter.git"
+		"url": "git+https://github.com/butter-robotics/Butter.MAS.NodeRed.git"
 	},
-	"keywords": [ "butter", "robotics", "mas", "node-red", "milab" ],
-	"author": "Ron Gissin",
+	"keywords": [ "butter", "robotics", "mas", "node-red" ],
+	"author": "Ron Gissin & Benny Megidish",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/idc-milab/NodeRed-Butter/issues"
+		"url": "https://github.com/butter-robotics/Butter.MAS.NodeRed/issues"
 	},
-	"homepage": "https://github.com/idc-milab/NodeRed-Butter#readme",
+	"homepage": "https://github.com/butter-robotics/Butter.MAS.NodeRed#readme",
 	"dependencies": {
-		"@butter-robotics/mas-javascript-api": "^0.13.0"
+		"@butter-robotics/mas-javascript-api": "^2.2.0"
 	},
 	"devDependencies": {
 		"jest": "^26.6.3",
