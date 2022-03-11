@@ -1,20 +1,18 @@
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center" style="margin-bottom: -6px">
-  <a href="https://github.com/idc-milab/NodeRed-Butter/">
+  <a href="https://github.com/butter-robotics/Butter.MAS.NodeRed/">
     <img src="nodes/icons/butter-node-red-logo.png" alt="Logo" width="80" height="108">
   </a>
 
-  <h3 align="center">NodeRed-Butter</h3>
+  <h3 align="center">Butter MAS NodeRed API</h3>
 
   <p align="center">
-    This repo defines node-red nodes that encapsulate butter.mas.api opertaions.
+    This repo defines Node-Red nodes that encapsulate Butter MAS API.
     <br />
     <br />
   </p>
 </p>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -31,16 +29,15 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
-
 
 
 <!-- ABOUT THE PROJECT -->
@@ -55,39 +52,44 @@ This can prove very useful when building IoT flows and orchestration using Node-
 * [Butter Javascript API](https://github.com/butter-robotics/Butter.MAS.JavascriptAPI)
 * [Node-Red](https://nodered.org/)
 
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
 
+
 ### Prerequisites
 
-* Download Node-Red (Please refer to [this link](https://nodered.org/docs/getting-started/windows) for easy installation on Windows).
-  
-* NPM install the package with the cmd while inside your user data directory (usually $HOME/.node-red)
+* Node-Red
+  (Please refer to this [documentation](https://nodered.org/docs/getting-started/windows) for easy installation on Windows).
+
+
+### Installation
+
+* Install the package.
   ```sh
-  npm install node-red-contrib-milab-butter@latest -g
+  npm install node-red-contrib-butter@latest -g
   ```
-* Restart node red and validate that the new nodes exist in your node pallete !
+* Restart Node-Red and validate that the new nodes exist in your node pallette.
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Once you have completed the prerequisites, the new nodes should appear in all their glory in the node pallete :)
+Once you have completed the prerequisites, the new nodes should appear in all their glory in the node pallette:
 
-![pallete pic](readme-resources/pallete-example.png?raw=true)
+![pallette pic](readme-resources/pallete-example.png?raw=true)
 
 You can drag the butter nodes to use in your flows:
 
 ![flow pic](readme-resources/flow-example.png?raw=true)
 
-Refer to the documentation given inside the node-red GUI to understand the usage better - have fun !
+For further explanation, please refer to the documentation given inside the node-red GUI.
 
 
 _To learn more about Node-Red, please refer to their [Documentation](https://nodered.org/docs/)_\
-_To understand more about Butter, please refer to their [Documentation](https://github.com/butter-robotics/Butter.MAS.JavascriptAPI)_
-
+_To understand more about Butter Robotics Javascript API, please refer to this [Documentation](https://github.com/butter-robotics/Butter.MAS.JavascriptAPI)_
 
 <!-- CONTRIBUTING -->
 ## Contributing
