@@ -62,10 +62,9 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* Download Node-Red (Dah..)
-  Plese refer to [this link](https://nodered.org/docs/getting-started/windows) for easy installation on Windows.
+* Download Node-Red (Please refer to [this link](https://nodered.org/docs/getting-started/windows) for easy installation on Windows).
   
-* npm install the package with the cmd while inside your user data directory (usually $HOME/.node-red)
+* NPM install the package with the cmd while inside your user data directory (usually $HOME/.node-red)
   ```sh
   npm install node-red-contrib-milab-butter@latest -g
   ```
