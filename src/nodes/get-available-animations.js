@@ -22,9 +22,7 @@ module.exports = function(RED) {
 			let isDebugMode = node.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (
-				msg.payload.robotIp != undefined 
-			) {
+			if (msg.payload.robotIp != undefined ) {
 				robotIp = msg.payload.robotIp;
 				reload = msg.payload.reload;
 			}
@@ -37,12 +35,12 @@ module.exports = function(RED) {
 					);
 				let flag = false;
 				if(reload) flag = true;
-				butter_response = await butterHttpClient.getAvailableAnimations(flag);
+				butterResponse = await butterHttpClient.getAvailableAnimations(flag);
 
-				if (isDebugMode) this.warn(`butter response is ${butter_response.data}`);
+				if (isDebugMode) this.warn(`butter response is ${butterResponse.data}`);
 				// prints operation result.
-				console.log(butter_response.data);
-				node.send({ payload: butter_response.data });
+				console.log(butterResponse.data);
+				node.send({ payload: butterResponse.data });
 			} catch (error) {
 				if (isDebugMode) this.warn(`failed to get the robot animations \n${error}`);
 			}

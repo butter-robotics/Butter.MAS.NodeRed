@@ -32,12 +32,12 @@ module.exports = function(RED) {
 				if (isDebugMode) this.warn(`getting the Available get Available Motor Registers of robot: ${robotIp} `);
 				let flag = false;
 				if (reload) flag = true;
-				butter_response = await butterHttpClient.getAvailableMotorRegisters(motorName, (readableOnly = False));
+				butterResponse = await butterHttpClient.getAvailableMotorRegisters(motorName, (readableOnly = False));
 
-				if (isDebugMode) this.warn(`butter response is ${JSON.stringify(butter_response.data)}`);
+				if (isDebugMode) this.warn(`butter response is ${JSON.stringify(butterResponse.data)}`);
 				// prints operation result.
-				console.log(butter_response.data);
-				node.send({ payload: butter_response.data });
+				console.log(butterResponse.data);
+				node.send({ payload: butterResponse.data });
 			} catch (error) {
 				if (isDebugMode) this.warn(`failed to get the robot available motor registers \n${error}`);
 			}

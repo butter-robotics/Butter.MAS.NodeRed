@@ -28,10 +28,10 @@ module.exports = function(RED) {
 			// play animation.
 			try {
 				this.debugLogger.logIfDebugMode(`attempting to play animation - ${animationName}`);
-				butter_response = await this.butterHttpClient.playAnimation(animationName);
+				butterResponse = await this.butterHttpClient.playAnimation(animationName);
 
-				this.debugLogger.logIfDebugMode(`butter response is ${butter_response.data}`);
-				this.send({ payload: butter_response.data });
+				this.debugLogger.logIfDebugMode(`butter response is ${butterResponse.data}`);
+				this.send({ payload: butterResponse.data });
 			} catch (error) {
 				this.debugLogger.logIfDebugMode(`failed to play animation - ${animationName}\n${error}`);
 			}

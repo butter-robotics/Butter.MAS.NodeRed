@@ -40,11 +40,11 @@ module.exports = function(RED) {
 			);
 
 			try {
-				butter_response = await this.butterHttpClient.setMotorRegister(motorName, registerName, value);
+				butterResponse = await this.butterHttpClient.setMotorRegister(motorName, registerName, value);
 
-				this.debugLogger.logIfDebugMode(`butter response is ${JSON.stringify(butter_response.data)}`);
+				this.debugLogger.logIfDebugMode(`butter response is ${JSON.stringify(butterResponse.data)}`);
 				// send operation result.
-				this.send({ payload: butter_response.data });
+				this.send({ payload: butterResponse.data });
 			} catch (error) {
 				this.debugLogger.logIfDebugMode(`failed to set register ${registerName}\n${error}`);
 			}
