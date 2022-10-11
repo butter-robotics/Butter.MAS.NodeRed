@@ -1,6 +1,6 @@
 {
-	"name": "node-red-contrib-butter",
-	"version": "2.0.0",
+	"name": "@butter-robotics/mas-node-red-api",
+	"version": "2.0.1",
 	"description": "A node-red collection of nodes that perform robotics operations using Butter Robotics platform",
 	"main": "butter-node-red.js",
 	"node-red": {
@@ -12,7 +12,12 @@
 		}
 	},
 	"scripts": {
-		"test": "jest"
+		"test": "jest",
+		"compile": "tsc",
+    	"build": "npm run compile",
+    	"release": "standard-version",
+    	"postrelease": "git push --follow-tags && npm run build && npm run publish",
+		"publish": "npm publish --scope @butter-robotics"
 	},
 	"repository": {
 		"type": "git",
@@ -26,7 +31,7 @@
 	},
 	"homepage": "https://github.com/butter-robotics/Butter.MAS.NodeRed#readme",
 	"dependencies": {
-		"@butter-robotics/mas-javascript-api": "^2.3.0"
+		"@butter-robotics/mas-javascript-api": "^2.3.2"
 	},
 	"devDependencies": {
 		"jest": "^26.6.3",

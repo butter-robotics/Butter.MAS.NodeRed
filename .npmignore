@@ -1,6 +1,8 @@
 # dirs
 node_modules/
 readme-resources/
+test/
+examples/
 
 # files
 package-lock.json
