@@ -24,20 +24,18 @@ module.exports = function(RED) {
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined ) {
 				robotIp = msg.payload.robotIp;
-				reload = msg.payload.reload;
+				reload = msg.payload.reload || false;
 			}
 
 			// getting Available Animations.
 			try {
 				if (isDebugMode)
-					this.warn(
-						`getting the Available Animations of robot ${robotIp} `
-					);
-				let flag = false;
-				if(reload) flag = true;
-				butterResponse = await butterHttpClient.getAvailableAnimations(flag);
+					this.warn(`getting the Available Animations of robot ${robotIp}`);
+
+				butterResponse = await butterHttpClient.getAvailableAnimations(reload);
 
 				if (isDebugMode) this.warn(`butter response is ${butterResponse.data}`);
+
 				// prints operation result.
 				console.log(butterResponse.data);
 				node.send({ payload: butterResponse.data });

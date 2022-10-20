@@ -23,12 +23,14 @@ module.exports = function(RED) {
 			if (msg.payload.robotIp != undefined && msg.payload.animationName != undefined) {
 				robotIp = msg.payload.robotIp;
 				animationName = msg.payload.animationName;
+				lenient = msg.payload.lenient || false;
+				relative = msg.payload.relative || false;
 			}
 
 			// play animation.
 			try {
 				this.debugLogger.logIfDebugMode(`attempting to play animation - ${animationName}`);
-				butterResponse = await this.butterHttpClient.playAnimation(animationName);
+				butterResponse = await this.butterHttpClient.playAnimation(animationName, lenient, relative);
 
 				this.debugLogger.logIfDebugMode(`butter response is ${butterResponse.data}`);
 				this.send({ payload: butterResponse.data });

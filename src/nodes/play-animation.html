@@ -1,19 +1,28 @@
 <!-- Play Animation Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('play-animation',{
+    RED.nodes.registerType('play-animation', {
         category: 'butter',
         color: '#5c6bc0',
         defaults: {
             name: {
-                value: "play-animation",
-                required: true,
+                value: "play animation",
+                required: true
              },
             robotIp: {
                 value: "0.0.0.0",
+                validate : RED.validators.regex(/^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/),
+                required: true
             },
             animationName: {
                 value: "",
+                required: true
+            },
+            lenient: {
+                value: false,
+            },
+            relative: {
+                value: false,
             },
             debugMode: {
                 value: false
@@ -22,9 +31,9 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "play-animation",
+        paletteLabel: "play animation",
         label: function() {
-            return this.name || "play-animation";
+            return this.name || "play animation";
         },
         align: 'right',
         outputLabels: ["operation result"],
@@ -38,15 +47,23 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-robotIp"><i class="fa fa-tag"></i> Robot IP</label>
+        <label for="node-input-robotIp"><i class="fa fa-at"></i> Robot IP</label>
         <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
     </div>
     <div class="form-row">
-        <label for="node-input-animationName"><i class="fa fa-tag"></i> Animation Name</label>
+        <label for="node-input-animationName"><i class="fa fa-font"></i> Animation Name</label>
         <input type="text" id="node-input-animationName" placeholder="">
     </div>
     <div class="form-row">
-        <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
+        <label for="node-input-lenient"><i class="fa fa-hourglass"></i> Wait</label>
+        <input type="checkbox" id="node-input-lenient" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-relative"><i class="fa fa-arrows-h"></i> Relative</label>
+        <input type="checkbox" id="node-input-relative" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-debugMode"><i class="fa fa-bug"></i> Debug Mode</label>
         <input type="checkbox" id="node-input-debugMode" placeholder="">
     </div>
     <div class="form-tips"><b>Note !</b> If the node receives as input a json with the above properties (not including name and debug mode properties), the node will disregard the ones provided in the UI.
@@ -64,8 +81,10 @@
                 <dd>The payload has to be of the following format: <br>
                     <code>
                     { <br>
-                        "robotIp": some-robot-ip, <br>
-                        "animationName": some-animation-name, <br>
+                        &nbsp;&nbsp;"robotIp": some-robot-ip, <br>
+                        &nbsp;&nbsp;"animationName": some-animation-name,
+                        &nbsp;&nbsp;"lenient": boolean,
+                        &nbsp;&nbsp;"relative": boolean <br>
                     }
                     </code>
                 </dd>
@@ -85,6 +104,8 @@
     <h3>Details</h3>
     <p><code>node.robotIp</code> is used to indicate the robot's ip to play animation on.</p>
     <p><code>node.animationName</code> is used to indicate which animation to run.</p>
+    <p><code>node.lenient</code> if true, the robot will wait for all queued animations to complete.</p>
+    <p><code>node.relative</code> if true, the animation will be animated relative to the current robot position.</p>
     <p><code>node.debugMode</code> if true, the node will print logs to the debug console.</p>
     <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
 </script>

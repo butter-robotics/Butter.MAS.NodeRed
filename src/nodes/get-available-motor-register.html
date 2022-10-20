@@ -1,19 +1,21 @@
 <!-- Get get-available-motor-register Node -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('get-available-motor-register',{
+    RED.nodes.registerType('get-available-motor-registers', {
         category: 'butter',
         color: '#5c6bc0',
         defaults: {
             name: {
-                value: "get-available-motor-register",
+                value: "get available motor registers",
                 required: true,
              },
             robotIp: {
                 value: "0.0.0.0",
+                validate : RED.validators.regex(/^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/),
+                required: true
             },
-            reload: {
-                value: "",
+            readableOnly: {
+                value: false,
             },
             debugMode: {
                 value: false
@@ -22,9 +24,9 @@
         inputs:1,
         outputs:1,
         icon: "icons/butter-logo-white.png",
-        paletteLabel: "get-available-motor-register",
+        paletteLabel: "get available motor registers",
         label: function() {
-            return this.name || "get-available-motor-register";
+            return this.name || "get available motor registers";
         },
         align: 'right',
         outputLabels: ["operation result"],
@@ -38,16 +40,16 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-robotIp"><i class="fa fa-tag"></i> Robot IP</label>
+        <label for="node-input-robotIp"><i class="fa fa-at"></i> Robot IP</label>
         <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
     </div>
     <div class="form-row">
-        <label for="node-input-reload"><i class="fa fa-tag"></i> Motor Name</label>
+        <label for="node-input-reload"><i class="fa fa-gear"></i> Motor Name</label>
         <!-- to change to boolean fix the condition-->
-        <input type="text" id="node-input-motorName" placeholder="yes/no">
+        <input type="text" id="node-input-motorName" placeholder="Motor name / id">
     </div>
     <div class="form-row">
-        <label for="node-input-debugMode"><i class="fa fa-tag"></i> Debug Mode</label>
+        <label for="node-input-debugMode"><i class="fa fa-bug"></i> Debug Mode</label>
         <input type="checkbox" id="node-input-debugMode" placeholder="">
     </div>
     <div class="form-tips"><b>Note !</b> If the node receives as input a json with the above properties (not including name and debug mode properties), the node will disregard the ones provided in the UI.
@@ -65,8 +67,8 @@
                 <dd>The payload has to be of the following format: <br>
                     <code>
                     { <br>
-                        "robotIp": some-robot-ip, <br>
-                        "reload": yes/no, <br>
+                        &nbsp;&nbsp;"robotIp": some-robot-ip, <br>
+                        &nbsp;&nbsp;"reload": boolean <br>
                     }
                     </code>
                 </dd>
