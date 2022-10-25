@@ -2,7 +2,7 @@
 <br />
 <p align="center" style="margin-bottom: -6px">
   <a href="https://github.com/butter-robotics/Butter.MAS.NodeRed/">
-    <img src="nodes/icons/butter-node-red-logo.png" alt="Logo" width="80" height="108">
+    <img src="src/nodes/icons/butter-node-red-logo.png" alt="Logo" width="80" height="108">
   </a>
 
   <h3 align="center">Butter MAS NodeRed API</h3>

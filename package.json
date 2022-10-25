@@ -1,8 +1,7 @@
 {
 	"name": "@butter-robotics/mas-node-red-api",
-	"version": "2.0.2",
-	"description": "A node-red collection of nodes that perform robotics operations using Butter Robotics platform",
-	"main": "butter-node-red.js",
+	"version": "2.0.4",
+	"description": "A node-red API for Butter Robotics platform",
 	"node-red": {
 		"nodes": {
 			"butter-play-animation": "src/nodes/play-animation.js",
@@ -10,6 +9,14 @@
 			"butter-get-motor-register": "src/nodes/get-motor-register.js",
 			"butter-get-available-animations": "src/nodes/get-available-animations.js"
 		}
+	},
+	"directories": {
+		"example": "examples",
+		"test": "test"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/",
+		"access": "public"
 	},
 	"scripts": {
 		"test": "jest",
@@ -21,7 +28,7 @@
 	},
 	"keywords": [ "butter", "robotics", "mas", "node-red" ],
 	"author": "Ron Gissin & Benny Megidish",
-	"license": "MIT",
+	"license": "Apache-2.0",
 	"bugs": {
 		"url": "https://github.com/butter-robotics/Butter.MAS.NodeRed/issues"
 	},
