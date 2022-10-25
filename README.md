@@ -69,7 +69,7 @@ To get a local copy up and running follow these simple steps.
 
 * Install the package.
   ```sh
-  npm install node-red-contrib-butter@latest -g
+  npm install @butter-robotics/mas-node-red-api@latest -g
   ```
 * Restart Node-Red and validate that the new nodes exist in your node pallette.
 
