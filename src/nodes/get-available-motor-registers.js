@@ -1,8 +1,8 @@
 /*
-    GetAvailableAnimations  node
+    getAvailableMotorRegisters  node
         * input: message (any).
-        * command: get all available animations  of a the configured robot.
-        * output:  response with the list of tha available animations.
+        * command: get all accessible registers for a given motor.
+        * output:  accessible registers for a given motor
 */
 
 module.exports = function(RED) {
@@ -17,7 +17,6 @@ module.exports = function(RED) {
 
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
-			let reload = this.config.reload;
 			let isDebugMode = this.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
@@ -44,5 +43,5 @@ module.exports = function(RED) {
 	}
 
 	// register node type.
-	RED.nodes.registerType('get-available-motor-register', getAvailableMotorRegisters);
+	RED.nodes.registerType('get-available-motor-registers', getAvailableMotorRegisters);
 };
