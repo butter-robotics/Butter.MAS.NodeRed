@@ -1,22 +1,24 @@
 const ButterException = require('../exceptions/butter_exception');
 
 class MotorRegisterResponseParser {
-	constructor() {}
+	constructor(debugMode=false) {
+		this.debugMode = debugMode;
+	}
 
-	parse(resp) {
-		let respData = typeof resp.data === 'string' ? JSON.parse(resp.data) : resp.data;
+	parse(response) {
+		if (this.debugMode) console.log(`${response.status} - ${response.statusText}`);
 
-		if ('exception' in respData) {
-			throw new ButterException(respData.exception);
-		}
-
-		const result = respData.Result;
-
-		if (result.includes('Failed')) {
+		if (response.statusText == 'Failed') {
 			return null;
 		}
 
-		const registerValue = result.split('|')[1].trim();
+		let responseData = typeof response.data === 'string' ? JSON.parse(response.data) : response.data;
+
+		if ('exception' in responseData) {
+			throw new ButterException(respData.exception);
+		}
+
+		const registerValue = responseData.response.data;
 
 		return parseInt(registerValue);
 	}

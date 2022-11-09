@@ -8,6 +8,7 @@ module.exports = function(RED) {
 	function PlayAnimationNode(config) {
 		RED.nodes.createNode(this, config);
 		this.config = config;
+		var node = this;
 
 		const DebugLogger = require('../logger/debug_logger');
 		const butterClientProvider = require('../butter-client/butter-client-provider');
@@ -15,17 +16,18 @@ module.exports = function(RED) {
 		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 		this.debugLogger = new DebugLogger(this, this.config.debugMode);
 
-		this.on('input', async function(msg) {
+		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
 			let animationName = this.config.animationName;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (msg.payload.robotIp != undefined && msg.payload.animationName != undefined) {
-				robotIp = msg.payload.robotIp;
-				animationName = msg.payload.animationName;
-				lenient = msg.payload.lenient || false;
-				relative = msg.payload.relative || false;
+			if (this.config.robotIp != undefined && this.config.animationName != undefined) {
+				robotIp = this.config.robotIp;
+				animationName = this.config.animationName;
+				lenient = this.config.lenient || false;
+				relative = this.config.relative || false;
 			}
+
 
 			// play animation.
 			try {

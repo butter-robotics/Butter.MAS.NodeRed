@@ -8,6 +8,7 @@ module.exports = function(RED) {
 	function SetMotorRegisterNode(config) {
 		RED.nodes.createNode(this, config);
 		this.config = config;
+		var node = this;
 
 		const DebugLogger = require('../logger/debug_logger');
 		const butterClientProvider = require('../butter-client/butter-client-provider');
@@ -15,7 +16,7 @@ module.exports = function(RED) {
 		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 		this.debugLogger = new DebugLogger(this, this.config.debugMode);
 
-		this.on('input', async function(msg) {
+		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
 			let motorName = this.config.motorName;
 			let registerName = this.config.registerName;
@@ -23,15 +24,15 @@ module.exports = function(RED) {
 
 			// check if message has correct json payload - if yes run it instead.
 			if (
-				msg.payload.robotIp != undefined &&
-				msg.payload.motorName != undefined &&
-				msg.payload.registerName != undefined &&
-				msg.payload.value != undefined
+				this.config.robotIp != undefined &&
+				this.config.motorName != undefined &&
+				this.config.registerName != undefined &&
+				this.config.value != undefined
 			) {
-				robotIp = msg.payload.robotIp;
-				motorName = msg.payload.motorName;
-				registerName = msg.payload.registerName;
-				value = msg.payload.value;
+				robotIp = this.config.robotIp;
+				motorName = this.config.motorName;
+				registerName = this.config.registerName;
+				value = this.config.value;
 			}
 
 			// sets the motor.

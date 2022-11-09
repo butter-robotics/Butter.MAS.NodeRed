@@ -15,16 +15,16 @@ module.exports = function(RED) {
 
 		node.on('input', async function(msg) {
 			// create butter client.
-			const butterHttpClient = butterClientProvider.GetClient(node.config.robotIp);
+			const butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 
-			let robotIp = node.config.robotIp;
-			let reload = node.config.reload;
-			let isDebugMode = node.config.debugMode;
+			let robotIp = this.config.robotIp;
+			let reload = this.config.reload;
+			let isDebugMode = this.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (msg.payload.robotIp != undefined ) {
-				robotIp = msg.payload.robotIp;
-				reload = msg.payload.reload || false;
+			if (this.config.robotIp != undefined ) {
+				robotIp = this.config.robotIp;
+				reload = this.config.reload || false;
 			}
 
 			// getting Available Animations.
