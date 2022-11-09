@@ -11,10 +11,10 @@ module.exports = function(RED) {
 		var node = this;
 
 		const DebugLogger = require('../logger/debug_logger');
-		const butterClientProvider = require('../butter-client/butter-client-provider');
-
-		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 		this.debugLogger = new DebugLogger(this, this.config.debugMode);
+		
+		const butterClientProvider = require('../butter-client/butter-client-provider');
+		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;

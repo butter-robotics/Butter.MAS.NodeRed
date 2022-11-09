@@ -12,13 +12,14 @@ module.exports = function(RED) {
 		var node = this;
 
 		const DebugLogger = require('../logger/debug_logger');
-		const ButterResponseParser = require('../butter-client/motor-register-response-parser');
-		const butterClientProvider = require('../butter-client/butter-client-provider');
-
 		this.debugLogger = new DebugLogger(this, this.config.debugMode);
-		this.butterResponseParser = new ButterResponseParser(this.config.debugMode);
-		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 
+		const ButterResponseParser = require('../butter-client/motor-register-response-parser');
+		this.butterResponseParser = new ButterResponseParser(this.config.debugMode);
+
+		const butterClientProvider = require('../butter-client/butter-client-provider');
+		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
+		
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
 			let motorName = this.config.motorName;

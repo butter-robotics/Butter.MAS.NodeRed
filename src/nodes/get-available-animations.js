@@ -11,12 +11,11 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
+		// create butter client.
 		const butterClientProvider = require('../butter-client/butter-client-provider');
+		const butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 
 		node.on('input', async function(msg) {
-			// create butter client.
-			const butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
-
 			let robotIp = this.config.robotIp;
 			let reload = this.config.reload;
 			let isDebugMode = this.config.debugMode;
