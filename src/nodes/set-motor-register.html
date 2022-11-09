@@ -20,6 +20,7 @@
             },
             registerName: {
                 value: "",
+                validate : RED.validators.regex(/^[a-z]+(-[a-z]+)*$/),
                 required: true
             },
             value: {
@@ -58,7 +59,8 @@
     </div>
     <div class="form-row">
         <label for="node-input-registerName"><i class="fa fa-font"></i> Register Name</label>
-        <select id="node-input-registerName">
+        <input type="text" id="node-input-registerName" list="node-input-registers-list"/>
+        <datalist id="node-input-registers-list">
             <option value="return-level">return-level</option>
             <option value="upper-limit-voltage">upper-limit-voltage</option>
             <option value="multi-turn-offset">multi-turn-offset</option>
@@ -83,7 +85,7 @@
             <option value="torque-enable">torque-enable</option>
             <option value="p-gain">p-gain</option>
             <option value="alarm-led">alarm-led</option>
-        </select>
+        </datalist>
     </div>
     <div class="form-row">
         <label for="node-input-value"><i class="fa fa-subscript"></i> Value</label>
