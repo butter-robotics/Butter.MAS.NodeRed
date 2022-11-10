@@ -1,10 +1,11 @@
 {
 	"name": "@butter-robotics/mas-node-red-api",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "A node-red API for Butter Robotics platform",
 	"node-red": {
 		"nodes": {
 			"butter-play-animation": "src/nodes/play-animation.js",
+			"butter-control-animation": "src/nodes/control-animation.js",
 			"butter-set-motor-register": "src/nodes/set-motor-register.js",
 			"butter-get-motor-register": "src/nodes/get-motor-register.js",
 			"butter-get-available-animations": "src/nodes/get-available-animations.js"
