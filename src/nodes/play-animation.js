@@ -21,11 +21,17 @@ module.exports = function(RED) {
 			let animationName = this.config.animationName;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (this.config.robotIp != undefined && this.config.animationName != undefined) {
-				robotIp = this.config.robotIp;
-				animationName = this.config.animationName;
-				lenient = this.config.lenient || false;
-				relative = this.config.relative || false;
+			if (this.msg.payload.robotIp != undefined && this.msg.payload.animationName != undefined) {
+				if (msg.payload.robotIp != this.config.robotIp) {
+					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
+				}
+
+				robotIp = msg.payload.robotIp;
+				animationName = msg.payload.animationName;
+				lenient = msg.payload.lenient || this.config.lenient || false;
+				relative = msg.payload.relative || this.config.relative || false;
+			} else {
+				this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 			}
 
 

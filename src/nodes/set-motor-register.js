@@ -24,15 +24,21 @@ module.exports = function(RED) {
 
 			// check if message has correct json payload - if yes run it instead.
 			if (
-				this.config.robotIp != undefined &&
-				this.config.motorName != undefined &&
-				this.config.registerName != undefined &&
-				this.config.value != undefined
+				msg.payload.robotIp != undefined &&
+				msg.payload.motorName != undefined &&
+				msg.payload.registerName != undefined &&
+				msg.payload.value != undefined
 			) {
-				robotIp = this.config.robotIp;
-				motorName = this.config.motorName;
-				registerName = this.config.registerName;
-				value = this.config.value;
+				if (msg.payload.robotIp != this.config.robotIp) {
+					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
+				}
+
+				robotIp = msg.payload.robotIp;
+				motorName = msg.payload.motorName;
+				registerName = msg.payload.registerName;
+				value = msg.payload.value;
+			} else {
+				this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 			}
 
 			// sets the motor.

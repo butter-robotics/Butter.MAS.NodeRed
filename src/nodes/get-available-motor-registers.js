@@ -13,16 +13,22 @@ module.exports = function(RED) {
 
 		// create butter client.
 		const butterClientProvider = require('../butter-client/butter-client-provider');
-		const butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
+		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
 			let isDebugMode = this.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (this.config.robotIp != undefined) {
-				robotIp = this.config.robotIp;
-				readableRegistersOnly = this.config.readableOnly || false;
+			if (msg.payload.robotIp != undefined) {
+				if (msg.payload.robotIp != this.config.robotIp) {
+					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
+				}
+
+				robotIp = msg.payload.robotIp;
+				readableRegistersOnly = msg.payload.readableOnly || this.config.readableOnly || false;
+			} else {
+				this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 			}
 
 			// getting Available Motor Registers.

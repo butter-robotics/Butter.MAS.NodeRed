@@ -13,7 +13,7 @@ module.exports = function(RED) {
 
 		// create butter client.
 		const butterClientProvider = require('../butter-client/butter-client-provider');
-		const butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
+		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
@@ -21,9 +21,15 @@ module.exports = function(RED) {
 			let isDebugMode = this.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (this.config.robotIp != undefined ) {
-				robotIp = this.config.robotIp;
-				reload = this.config.reload || false;
+			if (msg.payload.robotIp != undefined ) {
+				if (msg.payload.robotIp != this.config.robotIp) {
+					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
+				}
+
+				robotIp = msg.payload.robotIp;
+				reload = msg.payload.reload || this.config.reload || false;
+			} else {
+				this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 			}
 
 			// getting Available Animations.

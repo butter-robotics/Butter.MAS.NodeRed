@@ -21,9 +21,15 @@ module.exports = function(RED) {
 			let action = this.config.action;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (this.config.robotIp != undefined && this.config.action != undefined) {
-				robotIp = this.config.robotIp;
-				action = this.config.action;
+			if (msg.payload.robotIp != undefined && msg.payload.action != undefined) {
+				if (msg.payload.robotIp != this.config.robotIp) {
+					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
+				}
+
+				robotIp = msg.payload.robotIp;
+				action = msg.payload.action;
+			} else {
+				this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 			}
 
 
