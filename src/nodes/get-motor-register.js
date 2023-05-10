@@ -31,6 +31,8 @@ module.exports = function(RED) {
 				msg.payload.motorName != undefined &&
 				msg.payload.registerName != undefined
 			) {
+				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
 				}
@@ -42,7 +44,7 @@ module.exports = function(RED) {
 			}
 
 			this.debugLogger.logIfDebugMode(
-				`getting the value of register ${registerName} of motor ${motorName} of robot ${robotIp}`
+				`Getting the value of register ${registerName} of motor ${motorName} of robot ${robotIp}`
 			);
 
 			try {
@@ -51,12 +53,12 @@ module.exports = function(RED) {
 				this.debugLogger.logIfDebugMode(butterResponse);
 				parsedResponse = this.butterResponseParser.parse(butterResponse);
 
-				this.debugLogger.logIfDebugMode(`butter response is ${JSON.stringify(butterResponse.data, null, 2)}`);
-				this.debugLogger.logIfDebugMode(`parsed motor register value is ${parsedResponse}`);
+				this.debugLogger.logIfDebugMode(`Butter response: ${JSON.stringify(butterResponse.data, null, 2)}`);
+				this.debugLogger.logIfDebugMode(`Parsed motor register value is ${parsedResponse}`);
 
 				this.send({ payload: { register: registerName, value: parsedResponse } });
 			} catch (error) {
-				this.debugLogger.logIfDebugMode(`failed to get register ${registerName}\n${error}`);
+				this.debugLogger.logIfDebugMode(`Failed to get register ${registerName}\n${error}`);
 			}
 		});
 	}

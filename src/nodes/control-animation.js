@@ -22,6 +22,8 @@ module.exports = function(RED) {
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined && msg.payload.action != undefined) {
+				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
 				}
@@ -35,7 +37,7 @@ module.exports = function(RED) {
 
 			// manipulate animation.
 			try {
-				this.debugLogger.logIfDebugMode(`attempting to ${action} animation`);
+				this.debugLogger.logIfDebugMode(`Attempting to ${action} animation`);
 				switch (action) {
 					case "stop":
 						butterResponse = await this.butterHttpClient.stopAnimation();
@@ -50,14 +52,14 @@ module.exports = function(RED) {
 						butterResponse = await this.butterHttpClient.clearAnimation();
 						break;
 					default:
-						this.debugLogger.logIfDebugMode(`unknown action ${action}`);
+						this.debugLogger.logIfDebugMode(`Unknown action ${action}`);
 						butterResponse = {};
 				}
 
-				this.debugLogger.logIfDebugMode(`butter response is ${butterResponse.data}`);
+				this.debugLogger.logIfDebugMode(`Butter response: ${butterResponse.data}`);
 				this.send({ payload: butterResponse.data });
 			} catch (error) {
-				this.debugLogger.logIfDebugMode(`failed to ${action} animation\n${error}`);
+				this.debugLogger.logIfDebugMode(`Failed to ${action} animation\n${error}`);
 			}
 		});
 	}

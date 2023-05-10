@@ -22,6 +22,8 @@ module.exports = function(RED) {
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined ) {
+				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
 				}
@@ -35,17 +37,17 @@ module.exports = function(RED) {
 			// getting Available Animations.
 			try {
 				if (isDebugMode)
-					this.warn(`getting the Available Animations of robot ${robotIp}`);
+					this.warn(`Getting the Available Animations of robot ${robotIp}`);
 
 				butterResponse = await butterHttpClient.getAvailableAnimations(reload);
 
-				if (isDebugMode) this.warn(`butter response is ${butterResponse.data}`);
+				if (isDebugMode) this.warn(`Butter response: ${butterResponse.data}`);
 
 				// prints operation result.
 				console.log(butterResponse.data);
 				node.send({ payload: butterResponse.data });
 			} catch (error) {
-				if (isDebugMode) this.warn(`failed to get the robot animations \n${error}`);
+				if (isDebugMode) this.warn(`Failed to get the robot animations \n${error}`);
 			}
 		});
 	}

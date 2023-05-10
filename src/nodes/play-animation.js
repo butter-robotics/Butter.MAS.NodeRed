@@ -21,7 +21,9 @@ module.exports = function(RED) {
 			let animationName = this.config.animationName;
 
 			// check if message has correct json payload - if yes run it instead.
-			if (this.msg.payload.robotIp != undefined && this.msg.payload.animationName != undefined) {
+			if (msg.payload.robotIp != undefined && msg.payload.animationName != undefined) {
+				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
 				}
@@ -37,13 +39,13 @@ module.exports = function(RED) {
 
 			// play animation.
 			try {
-				this.debugLogger.logIfDebugMode(`attempting to play animation - ${animationName}`);
+				this.debugLogger.logIfDebugMode(`Attempting to play animation - ${animationName}`);
 				butterResponse = await this.butterHttpClient.playAnimation(animationName, lenient, relative);
 
-				this.debugLogger.logIfDebugMode(`butter response is ${butterResponse.data}`);
+				this.debugLogger.logIfDebugMode(`Butter response: ${butterResponse.data}`);
 				this.send({ payload: butterResponse.data });
 			} catch (error) {
-				this.debugLogger.logIfDebugMode(`failed to play animation - ${animationName}\n${error}`);
+				this.debugLogger.logIfDebugMode(`Failed to play animation - ${animationName}\n${error}`);
 			}
 		});
 	}
