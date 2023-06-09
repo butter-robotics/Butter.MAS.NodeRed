@@ -3,18 +3,18 @@
   data: installation.md
 - label: Documentation
   data: documentation.md
-- label: NODES
+- label: Nodes
   items:
   - label: Animate
-    data: nodes/play-animation.md
+    data: nodes/play_animation.md
   - label: Animation Control
-    data: nodes/control-animation.md
+    data: nodes/control_animation.md
   - label: Get Available Animations
-    data: nodes/get-available-animations.md
+    data: nodes/get_available_animations.md
   - label: Get Motor Register
-    data: nodes/get-motor-register.md
+    data: nodes/get_motor_register.md
   - label: Set Motor Register
-    data: nodes/set-motor-register.md
+    data: nodes/set_motor_register.md
   - label: Move Motor
-    data: nodes/move-motor.md
+    data: nodes/move_motor.md
 ...

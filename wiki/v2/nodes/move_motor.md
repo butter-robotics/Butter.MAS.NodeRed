@@ -14,6 +14,8 @@ Controls motor movement.
 
 - **acceleration** (*float*, **optional*) – movement acceleration.
 
+- **duration** (*float*, **optional*) – movement duration. setting velocity / acceleration will override the duration property.
+
 - **debugMode** (*boolean*, **optional*) – whether or not the node logging show be verbose. Defaults to false.
 
 ## Inputs
