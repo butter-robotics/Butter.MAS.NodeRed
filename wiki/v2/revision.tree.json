@@ -1,0 +1,10 @@
+[
+    "installation",
+    "documentation",
+    "nodes/play-animation",
+    "nodes/control-animation",
+    "nodes/get-available-animations",
+    "nodes/get-motor-register",
+    "nodes/set-motor-register",
+    "nodes/move-motor"
+]

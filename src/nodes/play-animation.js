@@ -1,7 +1,7 @@
 /*
     PlayAnimation node
         * input: message (any).
-        * command: play set animation on configured robot.
+        * command: play animation on configured robot.
         * output: operation success/failure response.
 */
 module.exports = function(RED) {
