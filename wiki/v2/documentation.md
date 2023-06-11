@@ -1,5 +1,7 @@
 # Documentation
 
+In this section we will describe general information that applies to every node usage. 
+
 ## Overview
 1. Access the Node-RED editor in a web browser with Node-RED running.
 2. Create a flow by wiring nodes together. A flow is a collection of nodes wired together and appears as a tab in the workspace.
