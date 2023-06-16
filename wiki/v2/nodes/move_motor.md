@@ -8,13 +8,15 @@ Controls motor movement.
 
 - **motorName** (*string*) – motor name.
 
-- **position** (*float*) – motor position.
+- **units** (*RotationUnits*) – properties base units, "radians" | "degrees".
 
-- **velocity** (*float*, **optional*) – movement velocity.
+- **position** (*float*) – motor position (units).
 
-- **acceleration** (*float*, **optional*) – movement acceleration.
+- **velocity** (*float*, **optional*) – movement velocity (units per second).
 
-- **duration** (*float*, **optional*) – movement duration. setting velocity / acceleration will override the duration property.
+- **acceleration** (*float*, **optional*) – movement acceleration (units per second²).
+
+- **duration** (*float*, **optional*) – movement duration (milliseconds).
 
 - **debugMode** (*boolean*, **optional*) – whether or not the node logging show be verbose. Defaults to false.
 

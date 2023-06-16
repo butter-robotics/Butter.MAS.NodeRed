@@ -1,0 +1,179 @@
+<!-- Move motor Node -->
+
+<script type="text/javascript">
+    RED.nodes.registerType('move-motor', {
+        category: 'butter',
+        color: '#5c6bc0',
+        defaults: {
+            name: {
+                value: "move motor",
+                required: true
+             },
+            robotIp: {
+                value: "0.0.0.0",
+                validate : RED.validators.regex(/^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/),
+                required: true
+            },
+            motorName: {
+                value: "",
+                required: true
+            },
+            position: {
+                value: 0,
+                required: true
+            },
+            velocity: {
+                value: 0,
+            },
+            acceleration: {
+                value: 0,
+            },
+            duration: {
+                value: 0,
+            },
+            units: {
+                value: "radians",
+                required: true
+            },
+            mode: {
+                value: "",
+            },
+            debugMode: {
+                value: false
+            }
+        },
+        inputs:1,
+        outputs:1,
+        icon: "icons/butter-logo-white.png",
+        paletteLabel: "move motor",
+        label: function() {
+            return this.name || "move motor";
+        },
+        align: 'right',
+        outputLabels: ["operation result"],
+        inputLabels: ["parameters (optional)"],
+        oneditprepare: function() {
+            $("#node-input-mode").on("change",function() {
+                if (!this.value || this.value === "") {
+                    $("#profile-details").hide();
+                    $("#temporal-details").hide();
+                } else if (this.value === "profile") {
+                    $("#profile-details").show();
+                    $("#temporal-details").hide();
+                } else if (this.value === "temporal") {
+                    $("#profile-details").hide();
+                    $("#temporal-details").show();
+                }
+            }).trigger("change");
+        },
+        oneditsave: function() {
+            this.mode = $("#node-input-mode").val();
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="move-motor">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-robotIp"><i class="fa fa-at"></i> Robot IP</label>
+        <input type="text" id="node-input-robotIp" placeholder="0.0.0.0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-motorName"><i class="fa fa-font"></i> Motor Name</label>
+        <input type="text" id="node-input-motorName" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-position"><i class="fa fa-crosshairs"></i> Position</label>
+        <input type="number" id="node-input-position" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-units"><i class="fa fa-balance-scale"></i> Units</label>
+        <select id="node-input-units">
+            <option value="radians">Radians</option>
+            <option value="degrees">Degrees</option>
+        </select>
+        <span> & </span>
+        <input type="text" id="node-input-timeUnits" placeholder="Milliseconds" style="width: calc(70% - 237px) !important" disabled>
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-exchange"></i> Mode</label>
+        <select id="node-input-mode">
+            <option value="">Default control</option>
+            <option value="profile">Profile control</option>
+            <option value="temporal">Temporal control</option>
+            <!-- <option value="direction">Direction control</option> -->
+        </select>
+    </div>
+    <div id="profile-details">
+        <div class="form-row">
+            <label for="node-input-velocity"><i class="fa fa-tachometer"></i> Velocity</label>
+            <input type="number" min="0" id="node-input-velocity" placeholder="">
+        </div>
+        <div class="form-row">
+            <label for="node-input-acceleration"><i class="fa fa-line-chart"></i> Acceleration</label>
+            <input type="number" min="0" id="node-input-acceleration" placeholder="">
+        </div>
+    </div>
+    <div id="temporal-details">
+        <div class="form-row">
+            <label for="node-input-duration"><i class="fa fa-hourglass"></i> Duration</label>
+            <input type="number" min="0" id="node-input-duration" placeholder="">
+        </div>
+    </div>
+    <div class="form-row">
+        <label for="node-input-debugMode"><i class="fa fa-bug"></i> Debug Mode</label>
+        <input type="checkbox" id="node-input-debugMode" placeholder="">
+    </div>
+    <div class="form-tips"><b>Note !</b> If the node receives as input a json with the above properties (not including name and debug mode properties), the node will disregard the ones provided in the UI.
+    See the help section to understand how this json can be composed.</div>
+    <div class="form-tips"><b>Tip:</b> Save the robotIp property as a `flow variable` for reuse.</div>
+</script>
+
+<script type="text/html" data-help-name="move-motor">
+    <p>Moves a motor.</p>
+    <h3>Inputs</h3>
+    <ol class="node-ports">
+        <li>parameters (Optional)
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">json object</span></dt>
+                <dd>The payload has to be of the following format: <br>
+                    <code>
+                    { <br>
+                        &nbsp;&nbsp;"robotIp": some-robot-ip, <br>
+                        &nbsp;&nbsp;"motorName": some-motor-name, <br>
+                        &nbsp;&nbsp;"position": number, <br>
+                        &nbsp;&nbsp;"acceleration": number <br>
+                        &nbsp;&nbsp;"velocity": number <br>
+                        &nbsp;&nbsp;"units": radians | degrees <br>
+                    }
+                    </code>
+                </dd>
+            </dl>
+        </li>
+   </ol>
+    <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>Operation Result
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">string</span></dt>
+                 <dd>the result of the butter command.</dd>
+             </dl>
+         </li>
+    </ol>
+
+    <h3>Details</h3>
+    <p><code>node.robotIp</code> is used to indicate the robot's ip to move motor on.</p>
+    <p><code>node.motorName</code> is used to indicate which motor to move.</p>
+    <p><code>node.position</code> is used to set the motor goal position.</p>
+    <p><code>node.velocity</code> is used to set the motor goal velocity.</p>
+    <p><code>node.acceleration</code> is used to set the motor goal acceleration.</p>
+    <p><code>node.duration</code> is used to set the motor movement duration.</p>
+    <p><code>node.units</code> is used to set the parameters base units, radians or degrees.</p>
+    <p><code>node.debugMode</code> if true, the node will print logs to the debug console.</p>
+    <p>make sure that the robot is indeed running and the animation was deployed successfully before running the node.</p>
+</script>
+
+
