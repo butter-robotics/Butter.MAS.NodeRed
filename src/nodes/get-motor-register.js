@@ -11,8 +11,8 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
-		const DebugLogger = require('../logger/debug_logger');
-		this.debugLogger = new DebugLogger(this, this.config.debugMode);
+		const Logger = require('../logger/debug_logger');
+		this.logger = new Logger(this, this.config.debugMode);
 
 		const ButterResponseParser = require('../butter-client/motor-register-response-parser');
 		this.butterResponseParser = new ButterResponseParser(this.config.debugMode);
@@ -31,7 +31,7 @@ module.exports = function(RED) {
 				msg.payload.motorName != undefined &&
 				msg.payload.registerName != undefined
 			) {
-				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+				this.logger.debug(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
 
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
@@ -43,22 +43,22 @@ module.exports = function(RED) {
 				this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 			}
 
-			this.debugLogger.logIfDebugMode(
+			this.logger.debug(
 				`Getting the value of register ${registerName} of motor ${motorName} of robot ${robotIp}`
 			);
 
 			try {
 				// getting motor register value.
 				butterResponse = await this.butterHttpClient.getMotorRegister(motorName, registerName);
-				this.debugLogger.logIfDebugMode(butterResponse);
+				this.logger.debug(butterResponse);
 				parsedResponse = this.butterResponseParser.parse(butterResponse);
 
-				this.debugLogger.logIfDebugMode(`Butter response: ${JSON.stringify(butterResponse.data, null, 2)}`);
-				this.debugLogger.logIfDebugMode(`Parsed motor register value is ${parsedResponse}`);
+				this.logger.debug(`Butter response: ${JSON.stringify(butterResponse.data, null, 2)}`);
+				this.logger.debug(`Parsed motor register value is ${parsedResponse}`);
 
 				this.send({ payload: { register: registerName, value: parsedResponse } });
 			} catch (error) {
-				this.debugLogger.logIfDebugMode(`Failed to get register ${registerName}\n${error}`);
+				this.logger.debug(`Failed to get register ${registerName}\n${error}`);
 			}
 		});
 	}

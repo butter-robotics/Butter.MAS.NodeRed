@@ -11,8 +11,8 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
-		const DebugLogger = require('../logger/debug_logger');
-		this.debugLogger = new DebugLogger(this, this.config.debugMode);
+		const Logger = require('../logger/logger');
+		this.logger = new Logger(this, this.config.debugMode);
 
 		// create butter client.
 		const butterClientProvider = require('../butter-client/butter-client-provider');
@@ -24,7 +24,7 @@ module.exports = function(RED) {
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined ) {
-				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+				this.logger.debug(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
 
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
@@ -38,15 +38,15 @@ module.exports = function(RED) {
 
 			// getting Available Animations.
 			try {
-				this.debugLogger.logIfDebugMode(`Getting the Available Animations of robot ${robotIp}`);
+				this.logger.debug(`Getting the Available Animations of robot ${robotIp}`);
 
 				butterResponse = await butterHttpClient.getAvailableAnimations(reload);
 
-				this.debugLogger.logIfDebugMode(`Butter response: ${butterResponse.data}`);
+				this.logger.debug(`Butter response: ${butterResponse.data}`);
 
 				node.send({ payload: butterResponse.data });
 			} catch (error) {
-				this.debugLogger.logIfDebugMode(`Failed to get the robot animations \n${error}`);
+				this.logger.debug(`Failed to get the robot animations \n${error}`);
 			}
 		});
 	}

@@ -10,8 +10,8 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
-		const DebugLogger = require('../logger/debug_logger');
-		this.debugLogger = new DebugLogger(this, this.config.debugMode);
+		const Logger = require('../logger/logger');
+		this.logger = new Logger(this, this.config.debugMode);
 		
 		const butterClientProvider = require('../butter-client/butter-client-provider');
 		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
@@ -29,7 +29,7 @@ module.exports = function(RED) {
 				msg.payload.registerName != undefined &&
 				msg.payload.value != undefined
 			) {
-				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+				this.logger.debug(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
 
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
@@ -44,18 +44,18 @@ module.exports = function(RED) {
 			}
 
 			// sets the motor.
-			this.debugLogger.logIfDebugMode(
+			this.logger.debug(
 				`Setting the register ${registerName} of motor ${motorName} of robot ${robotIp} to ${value}`
 			);
 
 			try {
 				butterResponse = await this.butterHttpClient.setMotorRegister(motorName, registerName, value);
 
-				this.debugLogger.logIfDebugMode(`Butter response: ${JSON.stringify(butterResponse.data)}`);
+				this.logger.debug(`Butter response: ${JSON.stringify(butterResponse.data)}`);
 				// send operation result.
 				this.send({ payload: butterResponse.data });
 			} catch (error) {
-				this.debugLogger.logIfDebugMode(`Failed to set register ${registerName}\n${error}`);
+				this.logger.debug(`Failed to set register ${registerName}\n${error}`);
 			}
 		});
 	}

@@ -10,8 +10,8 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
-		const DebugLogger = require('../logger/debug_logger');
-		this.debugLogger = new DebugLogger(this, this.config.debugMode);
+		const Logger = require('../logger/debug_logger');
+		this.logger = new Logger(this, this.config.debugMode);
 		
 		const butterClientProvider = require('../butter-client/butter-client-provider');
 		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
@@ -22,7 +22,7 @@ module.exports = function(RED) {
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined && msg.payload.action != undefined) {
-				this.debugLogger.logIfDebugMode(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
+				this.logger.debug(`Overriding node configuration with incoming payload [ID: ${msg._msgid}]`);
 
 				if (msg.payload.robotIp != this.config.robotIp) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
@@ -37,7 +37,7 @@ module.exports = function(RED) {
 
 			// manipulate animation.
 			try {
-				this.debugLogger.logIfDebugMode(`Attempting to ${action} animation`);
+				this.logger.debug(`Attempting to ${action} animation`);
 				switch (action) {
 					case "stop":
 						butterResponse = await this.butterHttpClient.stopAnimation();
@@ -52,14 +52,14 @@ module.exports = function(RED) {
 						butterResponse = await this.butterHttpClient.clearAnimation();
 						break;
 					default:
-						this.debugLogger.logIfDebugMode(`Unknown action ${action}`);
+						this.logger.debug(`Unknown action ${action}`);
 						butterResponse = {};
 				}
 
-				this.debugLogger.logIfDebugMode(`Butter response: ${butterResponse.data}`);
+				this.logger.debug(`Butter response: ${butterResponse.data}`);
 				this.send({ payload: butterResponse.data });
 			} catch (error) {
-				this.debugLogger.logIfDebugMode(`Failed to ${action} animation\n${error}`);
+				this.logger.debug(`Failed to ${action} animation\n${error}`);
 			}
 		});
 	}
