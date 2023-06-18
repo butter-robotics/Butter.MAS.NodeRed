@@ -11,13 +11,15 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
+		const DebugLogger = require('../logger/debug_logger');
+		this.debugLogger = new DebugLogger(this, this.config.debugMode);
+
 		// create butter client.
 		const butterClientProvider = require('../butter-client/butter-client-provider');
 		this.butterHttpClient = butterClientProvider.GetClient(this.config.robotIp);
 
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
-			let isDebugMode = this.config.debugMode;
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined) {
@@ -35,17 +37,17 @@ module.exports = function(RED) {
 
 			// getting Available Motor Registers.
 			try {
-				if (isDebugMode) this.warn(`Getting the Available get Available Motor Registers of robot: ${robotIp}`);
+				this.debugLogger.logIfDebugMode(`Getting the Available get Available Motor Registers of robot: ${robotIp}`);
 
 				butterResponse = await butterHttpClient.getAvailableMotorRegisters(motorName, readableRegistersOnly);
 
-				if (isDebugMode) this.warn(`Butter response: ${JSON.stringify(butterResponse.data)}`);
+				this.debugLogger.logIfDebugMode(`Butter response: ${JSON.stringify(butterResponse.data)}`);
 
 				// prints operation result.
 				console.log(butterResponse.data);
 				node.send({ payload: butterResponse.data });
 			} catch (error) {
-				if (isDebugMode) this.warn(`Failed to get the robot available motor registers \n${error}`);
+				this.debugLogger.logIfDebugMode(`Failed to get the robot available motor registers \n${error}`);
 			}
 		});
 	}
