@@ -1,6 +1,6 @@
 {
 	"name": "@butter-robotics/mas-node-red-api",
-	"version": "2.4.0",
+	"version": "2.4.1",
 	"description": "A node-red API for Butter Robotics platform",
 	"node-red": {
 		"nodes": {
