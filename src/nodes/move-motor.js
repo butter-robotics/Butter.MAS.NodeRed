@@ -22,6 +22,9 @@ module.exports = function(RED) {
 			let position = this.config.position;
 			let units = this.config.units;
 			let mode = this.config.mode;
+			let velocity = this.config.velocity;
+			let acceleration = this.config.acceleration;
+			let duration = this.config.duration;
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined && msg.payload.motorName != undefined && msg.payload.position != undefined && msg.payload.units != undefined) {
@@ -50,7 +53,7 @@ module.exports = function(RED) {
 
 			// move motor.
 			try {
-				this.logger.debug(`Attempting to move motor - ${motorName}`);
+				this.logger.debug(`Attempting to move motor ${motorName} of robot ${robotIp}`);
 
 				switch (mode) {
 					case "temporal":

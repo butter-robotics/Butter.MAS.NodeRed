@@ -37,7 +37,7 @@ module.exports = function(RED) {
 
 			// manipulate animation.
 			try {
-				this.logger.debug(`Attempting to ${action} animation`);
+				this.logger.debug(`Attempting to ${action} animation on robot ${robotIp}`);
 				switch (action) {
 					case "stop":
 						butterResponse = await this.butterHttpClient.stopAnimation();

@@ -20,6 +20,7 @@ module.exports = function(RED) {
 
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
+			let readableRegistersOnly = this.config.readableOnly;
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined) {

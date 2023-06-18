@@ -19,6 +19,8 @@ module.exports = function(RED) {
 		node.on('input', async function(msg) {
 			let robotIp = this.config.robotIp;
 			let animationName = this.config.animationName;
+			let lenient = this.config.lenient;
+			let relative = this.config.relative;
 
 			// check if message has correct json payload - if yes run it instead.
 			if (msg.payload.robotIp != undefined && msg.payload.animationName != undefined) {
@@ -39,7 +41,7 @@ module.exports = function(RED) {
 
 			// play animation.
 			try {
-				this.logger.debug(`Attempting to play animation - ${animationName}`);
+				this.logger.debug(`Attempting to play ${animationName} animation on robot ${robotIp}`);
 				butterResponse = await this.butterHttpClient.playAnimation(animationName, lenient, relative);
 
 				this.logger.debug(`Butter response: ${butterResponse.data}`);

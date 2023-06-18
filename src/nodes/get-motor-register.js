@@ -37,6 +37,7 @@ module.exports = function(RED) {
 					this.butterHttpClient = butterClientProvider.GetClient(msg.payload.robotIp);
 				}
 
+				robotIp = msg.payload.robotIp;
 				motorName = msg.payload.motorName;
 				registerName = msg.payload.registerName;
 			} else {
