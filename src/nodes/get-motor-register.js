@@ -11,7 +11,7 @@ module.exports = function(RED) {
 		this.config = config;
 		var node = this;
 
-		const Logger = require('../logger/debug_logger');
+		const Logger = require('../logger/logger');
 		this.logger = new Logger(this, this.config.debugMode);
 
 		const ButterResponseParser = require('../butter-client/motor-register-response-parser');
