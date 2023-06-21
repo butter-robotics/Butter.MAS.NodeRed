@@ -1,6 +1,6 @@
 {
 	"name": "@butter-robotics/mas-node-red-api",
-	"version": "2.4.3",
+	"version": "2.5.0",
 	"description": "A node-red API for Butter Robotics platform",
 	"node-red": {
 		"nodes": {
@@ -41,7 +41,7 @@
 	},
 	"homepage": "https://github.com/butter-robotics/Butter.MAS.NodeRed#readme",
 	"dependencies": {
-		"@butter-robotics/mas-javascript-api": "^2.3.4"
+		"@butter-robotics/mas-javascript-api": "^2.4.0"
 	},
 	"devDependencies": {
 		"jest": "^29.5.0",
